@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2027.2.11–2.21 · WF冬 × 纹别流冰 × 北海道 — 7人三版行程</title>
+<meta name="description" content="2027.2.11–2.21 幕张WF冬 × 纹别流冰破冰船 × 北海道，7人（北京3/武汉2/杭州2）三版行程：方案与出发地可切换、预算实时计算、预订清单可勾选。">
+<meta name="color-scheme" content="light dark">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, h4, p, ul, ol, li, dl, dt, dd, figure, table, blockquote { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img, svg { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+table { border-collapse: collapse; }
+</style>
+<style>
+:root {
+  /* ink & ice — 鄂霍次克海冬夜 + ガリンコ号钻头橙 */
+  --ground:      #F1F5F7;
+  --surface:     #FFFFFF;
+  --surface-2:   #E7EEF2;
+  --line:        #CBD9E1;
+  --line-soft:   #DDE7EC;
+  --ink:         #0D1C27;
+  --ink-2:       #3C5364;
+  --ink-3:       #6B8291;
+  --ice:         #1F6A91;
+  --ice-soft:    #D3E5EF;
+  --drill:       #D65B26;
+  --drill-soft:  #FAE3D8;
+  --good:        #2C6E52;
+  --warn:        #96631A;
+  --crit:        #A93C2E;
+  --bar:         #3E88AE;
+  --bar-track:   #DCE7ED;
+  --on-ice:      #FFFFFF;
+
+  --serif: "Songti SC", "Source Han Serif SC", "Noto Serif CJK SC", "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  --wrap: 1060px;
+  --r: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground:    #08131B;
+    --surface:   #0E1F2A;
+    --surface-2: #16303E;
+    --line:      #24404F;
+    --line-soft: #1B3543;
+    --ink:       #E8F1F5;
+    --ink-2:     #AFC5D0;
+    --ink-3:     #7B95A3;
+    --ice:       #8CC4E0;
+    --ice-soft:  #163647;
+    --drill:     #F08A55;
+    --drill-soft:#3A1F13;
+    --good:      #7FC5A2;
+    --warn:      #E0B45F;
+    --crit:      #EE8878;
+    --bar:       #63AACD;
+    --bar-track: #17303D;
+    --on-ice:    #06141C;
+  }
+}
+:root[data-theme="dark"] {
+  --ground:#08131B; --surface:#0E1F2A; --surface-2:#16303E; --line:#24404F; --line-soft:#1B3543;
+  --ink:#E8F1F5; --ink-2:#AFC5D0; --ink-3:#7B95A3; --ice:#8CC4E0; --ice-soft:#163647;
+  --drill:#F08A55; --drill-soft:#3A1F13; --good:#7FC5A2; --warn:#E0B45F; --crit:#EE8878;
+  --bar:#63AACD; --bar-track:#17303D; --on-ice:#06141C;
+}
+:root[data-theme="light"] {
+  --ground:#F1F5F7; --surface:#FFFFFF; --surface-2:#E7EEF2; --line:#CBD9E1; --line-soft:#DDE7EC;
+  --ink:#0D1C27; --ink-2:#3C5364; --ink-3:#6B8291; --ice:#1F6A91; --ice-soft:#D3E5EF;
+  --drill:#D65B26; --drill-soft:#FAE3D8; --good:#2C6E52; --warn:#96631A; --crit:#A93C2E;
+  --bar:#3E88AE; --bar-track:#DCE7ED; --on-ice:#FFFFFF;
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; text-wrap: balance; line-height: 1.35; }
+a { color: var(--ice); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--drill); outline-offset: 2px; border-radius: 3px; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ── hero ─────────────────────────────── */
+.hero { padding: 44px 0 26px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.hero h1 { font-size: clamp(28px, 4.6vw, 44px); margin: 10px 0 6px; letter-spacing: .01em; }
+.hero .sub { color: var(--ink-2); max-width: 62ch; }
+.hero .rule { width: 46px; height: 3px; background: var(--drill); margin: 18px 0 0; }
+.counts { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 22px; }
+.counts div { display: flex; flex-direction: column; }
+.counts .k { font-family: var(--mono); font-size: 22px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.counts .l { font-size: 12px; color: var(--ink-3); letter-spacing: .04em; }
+
+/* ── sections ─────────────────────────── */
+section { padding: 40px 0 4px; scroll-margin-top: 62px; }
+section > .wrap > .head { margin-bottom: 20px; }
+section h2 { font-size: clamp(20px, 2.6vw, 26px); margin: 6px 0 4px; }
+section .lede { color: var(--ink-2); font-size: 15px; max-width: 66ch; }
+hr.div { border: 0; border-top: 1px solid var(--line); margin: 44px 0 0; }
+
+/* ── control bar ──────────────────────── */
+.sticky { position: sticky; top: 0; z-index: 40; background: var(--ground); border-bottom: 1px solid var(--line); }
+.sticky .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; padding: 10px 20px; }
+.switch { display: flex; align-items: center; gap: 8px; }
+.switch .lab { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.seg { display: flex; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface); }
+.seg button {
+  font: inherit; font-size: 13.5px; padding: 5px 13px; border: 0; background: transparent;
+  color: var(--ink-2); cursor: pointer; border-right: 1px solid var(--line-soft);
+}
+.seg button:last-child { border-right: 0; }
+.seg button:hover { background: var(--surface-2); color: var(--ink); }
+.seg button[aria-selected="true"] { background: var(--ice); color: var(--on-ice); }
+
+/* ── plan banner ──────────────────────── */
+.planhead { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: end;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; }
+.planhead .name { font-family: var(--serif); font-size: 22px; }
+.planhead .one { color: var(--ink-2); font-size: 14.5px; margin-top: 4px; max-width: 56ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .05em; padding: 3px 9px;
+  border: 1px solid var(--line); border-radius: 100px; color: var(--ink-2); background: var(--ground);
+  white-space: nowrap;
+}
+.chip.ice { border-color: var(--ice); color: var(--ice); background: var(--ice-soft); }
+.chip.hot { border-color: var(--drill); color: var(--drill); background: var(--drill-soft); }
+
+/* ── day list ─────────────────────────── */
+.days { display: flex; flex-direction: column; gap: 0; margin-top: 22px;
+  border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; }
+.day { display: grid; grid-template-columns: 108px 1fr; border-top: 1px solid var(--line-soft); }
+.day:first-child { border-top: 0; }
+.day.locked { background: var(--surface); }
+.gutter { padding: 18px 14px 18px 20px; border-right: 1px solid var(--line-soft); background: var(--ground); }
+.gutter .d { font-family: var(--mono); font-size: 17px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.gutter .w { font-size: 12px; color: var(--ink-3); }
+.gutter .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; color: var(--ice); margin-top: 6px; }
+.body { padding: 16px 20px 18px; min-width: 0; }
+.body h3 { font-size: 16.5px; font-family: var(--sans); font-weight: 600; margin-bottom: 8px; }
+.body ul { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 8px 0 0; }
+.body li { font-size: 14.5px; color: var(--ink-2); padding-left: 15px; position: relative; }
+.body li::before { content: ""; position: absolute; left: 0; top: .72em; width: 5px; height: 5px; background: var(--line); border-radius: 50%; }
+.body li b { color: var(--ink); font-weight: 600; }
+.note { margin-top: 12px; font-size: 13.5px; color: var(--ink-2); background: var(--ground);
+  border-left: 2px solid var(--drill); padding: 8px 12px; border-radius: 0 3px 3px 0; }
+details.more { margin-top: 12px; }
+details.more summary { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--ice); cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px; }
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::after { content: "＋"; font-size: 12px; }
+details.more[open] summary::after { content: "−"; }
+details.more .inner { margin-top: 10px; font-size: 14px; color: var(--ink-2);
+  border: 1px dashed var(--line); border-radius: var(--r); padding: 12px 14px; }
+details.more .inner p + p { margin-top: 8px; }
+
+/* ── city cards ───────────────────────── */
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; }
+.card.on { border-color: var(--ice); box-shadow: inset 3px 0 0 var(--ice); }
+.card h3 { font-size: 17px; display: flex; align-items: baseline; gap: 8px; }
+.card h3 span.pax { font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
+.card dl { margin-top: 12px; display: flex; flex-direction: column; gap: 9px; }
+.card dt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.card dd { font-size: 14.5px; color: var(--ink-2); }
+.card dd b { color: var(--ink); }
+
+/* ── calculator ───────────────────────── */
+.calc { display: grid; grid-template-columns: 300px 1fr; gap: 18px; align-items: start; }
+@media (max-width: 820px) { .calc { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 20px; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.field > label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.field .hint { font-size: 12.5px; color: var(--ink-3); }
+select, input[type="number"] {
+  font: inherit; font-size: 14px; padding: 7px 9px; color: var(--ink);
+  background: var(--ground); border: 1px solid var(--line); border-radius: 4px; width: 100%;
+}
+.checkrow { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; color: var(--ink-2); margin-bottom: 11px; }
+.checkrow input { margin-top: 5px; accent-color: var(--ice); flex: none; }
+table.bill { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.bill th, table.bill td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line-soft); }
+table.bill th { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); font-weight: 400; }
+table.bill td.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.bill td.sub { color: var(--ink-3); font-size: 12.5px; }
+table.bill tr.total td { border-bottom: 0; border-top: 2px solid var(--line); font-weight: 600; padding-top: 12px; font-size: 15px; }
+.scroll { overflow-x: auto; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--ground); border: 1px solid var(--line-soft); border-radius: var(--r); padding: 13px 15px; }
+.tile .l { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.tile .v { font-family: var(--mono); font-size: 25px; font-variant-numeric: tabular-nums; color: var(--ink); line-height: 1.3; }
+.tile .v small { font-size: 13px; color: var(--ink-3); }
+
+/* ── bars ─────────────────────────────── */
+.bars { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+.barrow { display: grid; grid-template-columns: 128px 1fr 76px; gap: 12px; align-items: center; }
+.barrow .lab { font-size: 13.5px; color: var(--ink-2); }
+.barrow .track { background: var(--bar-track); border-radius: 4px; height: 22px; }
+.barrow .fill { background: var(--bar); height: 100%; border-radius: 0 4px 4px 0; transition: width .35s ease; }
+.barrow .val { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2);
+  font-variant-numeric: tabular-nums; text-align: right; }
+.barrow.on .lab, .barrow.on .val { color: var(--ink); }
+@media (max-width: 560px) { .barrow { grid-template-columns: 92px 1fr 72px; gap: 8px; } }
+@media (prefers-reduced-motion: reduce) { .barrow .fill { transition: none; } }
+
+/* ── compare table ────────────────────── */
+table.cmp { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px; }
+table.cmp th, table.cmp td { padding: 11px 14px; border-bottom: 1px solid var(--line-soft); text-align: left; vertical-align: top; }
+table.cmp thead th { font-family: var(--serif); font-size: 15px; color: var(--ink); border-bottom: 1px solid var(--line); }
+table.cmp tbody th { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 400; white-space: nowrap; }
+table.cmp col.on, table.cmp td.on { background: var(--ice-soft); }
+
+/* ── checklist ────────────────────────── */
+.progress { height: 5px; background: var(--bar-track); border-radius: 3px; overflow: hidden; margin: 4px 0 20px; }
+.progress i { display: block; height: 100%; background: var(--good); width: 0; transition: width .3s ease; }
+.tasks { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.task { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: start;
+  padding: 12px 16px; border-top: 1px solid var(--line-soft); }
+.task:first-child { border-top: 0; }
+.task input { margin-top: 6px; accent-color: var(--good); width: 15px; height: 15px; }
+.task .t { font-size: 14.5px; color: var(--ink); }
+.task .t em { font-style: normal; color: var(--ink-3); font-size: 13px; display: block; }
+.task.done .t, .task.done .t em { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--line); }
+.task .when { font-family: var(--mono); font-size: 11px; color: var(--ink-3); white-space: nowrap; padding-top: 4px; }
+.task[data-urgent="1"] .when { color: var(--drill); }
+
+/* ── risks / gear ─────────────────────── */
+.acc { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; }
+.acc details { border-top: 1px solid var(--line-soft); }
+.acc details:first-child { border-top: 0; }
+.acc summary { cursor: pointer; padding: 13px 18px; font-size: 15px; display: flex; gap: 10px; align-items: baseline;
+  list-style: none; }
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::before { content: "▸"; color: var(--drill); font-size: 11px; }
+.acc details[open] summary::before { content: "▾"; }
+.acc .ans { padding: 0 18px 16px 39px; font-size: 14.5px; color: var(--ink-2); }
+.acc .ans p + p { margin-top: 9px; }
+.gear { display: flex; flex-wrap: wrap; gap: 8px; }
+.gear label { display: flex; gap: 7px; align-items: center; font-size: 14px; color: var(--ink-2);
+  border: 1px solid var(--line); border-radius: 100px; padding: 5px 13px 5px 10px; background: var(--surface); cursor: pointer; }
+.gear input { accent-color: var(--ice); }
+.gear label:has(input:checked) { color: var(--ink-3); border-color: var(--line-soft); text-decoration: line-through; text-decoration-color: var(--line); }
+
+footer { margin-top: 48px; padding: 26px 0 40px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px; }
+footer p + p { margin-top: 7px; }
+</style>
+
+</head>
+<body>
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">2027.02.11 – 02.21 · 7人 · 北京 3 / 武汉 2 / 杭州 2</p>
+    <h1>WF2027[冬] × 纹别流冰破冰船 × 北海道</h1>
+    <p class="sub">三版行程可切换、按人按城算钱、预订倒排可勾选。骨架固定：2/11 东京汇合 → 2/13–14 幕张 WF → 2/15 纹别日落破冰航 → 北海道 → 2/21 各自回国。</p>
+    <div class="rule"></div>
+    <div class="counts">
+      <div><span class="k" id="cd-wf">—</span><span class="l">天 · 距 WF 开幕</span></div>
+      <div><span class="k" id="cd-dealer">—</span><span class="l">天 · 距 Dealer 募集开始 8/12</span></div>
+      <div><span class="k">1</span><span class="l">班 · 羽田⇄纹别每日航班</span></div>
+      <div><span class="k">11</span><span class="l">天 · 总行程</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="sticky">
+  <div class="wrap">
+    <div class="switch">
+      <span class="lab">方案</span>
+      <div class="seg" id="seg-plan" role="tablist" aria-label="行程方案">
+        <button role="tab" data-plan="A" aria-selected="true">A 道央经典</button>
+        <button role="tab" data-plan="B" aria-selected="false">B 道东狂野</button>
+        <button role="tab" data-plan="C" aria-selected="false">C 札幌大本营</button>
+      </div>
+    </div>
+    <div class="switch">
+      <span class="lab">出发地</span>
+      <div class="seg" id="seg-city" role="tablist" aria-label="出发城市">
+        <button role="tab" data-city="bj" aria-selected="true">北京 3人</button>
+        <button role="tab" data-city="wh" aria-selected="false">武汉 2人</button>
+        <button role="tab" data-city="hz" aria-selected="false">杭州 2人</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="planhead">
+      <div>
+        <p class="eyebrow" id="p-eyebrow">方案 A</p>
+        <p class="name" id="p-name">—</p>
+        <p class="one" id="p-one">—</p>
+      </div>
+      <div class="chips" id="p-chips"></div>
+    </div>
+
+    <div class="days" id="days"></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section id="people">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">三城进出</p>
+      <h2>7个人怎么汇成一条线</h2>
+      <p class="lede">核心判断：武汉无直飞日本，武汉2人提前一天并入杭州组，全程按「北京3人」+「华中华东4人」两条线走，只在东京汇合、在新千岁分手。上方切换出发地会同步高亮。</p>
+    </div>
+    <div class="grid3" id="cities"></div>
+    <div class="note" style="margin-top:14px">出票顺序：① 先出 <b>ANA375 羽田→纹别</b>（全程唯一无替代的一段，2/15一天一班）；② 再出国际段，优先 ANA/JAL 实际承运，避开减班中的中方航司班号；③ 最后订 2/21 回程，直飞班期未确认前不要先买不可退的国内接驳段。</div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section id="money">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">按人按城算钱</p>
+      <h2>预算计算器</h2>
+      <p class="lede">日本境内项目按日元建模、按你填的汇率折算；机票按城市口径给人民币中值。改任意一项，右侧账单与下面的三版对比实时更新。</p>
+    </div>
+
+    <div class="calc">
+      <div class="panel">
+        <div class="field">
+          <label for="f-tier">住宿餐饮档位</label>
+          <select id="f-tier">
+            <option value="eco">经济 · 商务酒店 + 定食</option>
+            <option value="std" selected>标准 · 中档 + 一顿蟹会席</option>
+            <option value="lux">舒适 · 温泉旅馆升级</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-room">房型</label>
+          <select id="f-room">
+            <option value="twin" selected>双人房分摊</option>
+            <option value="single">单人房（住宿 ×1.75）</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-rate">汇率 · 1元 = ? 日元</label>
+          <input type="number" id="f-rate" value="20" min="15" max="25" step="0.1">
+          <span class="hint">出票当天自查，2027季建议再留 5–10% 涨幅。</span>
+        </div>
+        <div class="field">
+          <label>可选项</label>
+          <label class="checkrow"><input type="checkbox" id="f-ejf" checked><span>羽田→纹别用 ANA 访日外国人优惠运赁（约¥13,000 代替正价¥24,000；需外国护照＋国际段机票，座位有限额）</span></label>
+          <label class="checkrow"><input type="checkbox" id="f-crab" checked><span>纹别一晚含毛蟹会席二食</span></label>
+          <label class="checkrow"><input type="checkbox" id="f-yamato" checked><span>2/14 晚大件行李宅急便寄札幌（约¥2,500/件）</span></label>
+        </div>
+      </div>
+
+      <div>
+        <div class="tiles">
+          <div class="tile"><div class="l">当前城市 · 人均</div><div class="v" id="t-per">—<small> 元</small></div></div>
+          <div class="tile"><div class="l">7人团队合计</div><div class="v" id="t-team">—<small> 元</small></div></div>
+          <div class="tile"><div class="l">日本境内小计</div><div class="v" id="t-jpy">—<small> 日元</small></div></div>
+        </div>
+        <div class="scroll">
+          <table class="bill">
+            <thead><tr><th>项目</th><th style="text-align:right">原币</th><th style="text-align:right">人民币</th></tr></thead>
+            <tbody id="bill"></tbody>
+          </table>
+        </div>
+        <p class="hint" style="margin-top:12px;font-size:12.5px;color:var(--ink-3)">不含：WF摊位费、展品物流、旅行保险、个人购物。2026年参考价，2027季请按官网复核。</p>
+      </div>
+    </div>
+
+    <div style="margin-top:30px">
+      <p class="eyebrow">同档位下三版人均 · 元 / 人（当前城市口径）</p>
+      <div class="bars" id="bars"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section id="compare">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">一屏对比</p>
+      <h2>三版差在哪</h2>
+    </div>
+    <div class="scroll">
+      <table class="cmp" id="cmp">
+        <colgroup><col style="width:150px"><col id="col-A"><col id="col-B"><col id="col-C"></colgroup>
+      </table>
+    </div>
+    <div class="note" style="margin-top:16px"><b>7人团的现实建议：</b>7个人里只要有一位不擅长连续赶车，B案的6次换床＋4项冬季限定班次就会成为全团的风险敞口。若拿不定，选 <b>C 案做底</b>，把想看流冰漫步的人拆成 2/17–2/18 的「知床两日小分队」再回札幌合流——大本营不动，小分队自负风险，这是7人团最稳的打法。</div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section id="todo">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">从现在倒排</p>
+      <h2>预订时间线</h2>
+      <p class="lede">勾选状态存在本机浏览器里，下次打开还在。橙色日期是已经进入窗口或即将关闭的。</p>
+    </div>
+    <div class="progress"><i id="prog"></i></div>
+    <div class="tasks" id="tasks"></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section id="risk">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Plan B</p>
+      <h2>会出错的地方，和当天怎么办</h2>
+    </div>
+    <div class="acc">
+      <details open>
+        <summary>ANA375 满员或因暴雪取消（唯一硬伤）</summary>
+        <div class="ans">
+          <p>当天改飞 <b>羽田→新千岁</b>（班次极多）→ JR 进札幌 → 傍晚班「流氷もんべつ号」高速巴士夜里抵纹别，破冰船顺延至 2/16 上午班，后续压缩半天。</p>
+          <p>或改飞 <b>羽田→女满别</b>，换乘网走「おーろら」破冰船——B案受影响最小，因为第二天本来就在网走。</p>
+          <p>预防：2/15 是周一、又是全团唯一无替代航段，<b>现在就出票</b>，并把7张票开在同一预订号里，遇取消可整团一起改。</p>
+        </div>
+      </details>
+      <details>
+        <summary>国际段又被减班 / 取消（2026年最现实的风险）</summary>
+        <div class="ans">
+          <p>三大航对日本线的免费退改已延至2026/10/24航季，冬春航季政策大概率延续——所以 <b>先买、盯着、再换</b> 比观望更划算。</p>
+          <p>优先买 ANA/JAL 实际承运的航班（日方航司未大规模砍中国线），中方航司只作比价。</p>
+          <p>北京3人如果 2/21「新千岁→北京首都」当天没班，退回 <b>新千岁→羽田 + 羽田→北京</b>；实在接不上就在东京多住一晚 2/22 回，机票按此留改期空间。</p>
+        </div>
+      </details>
+      <details>
+        <summary>流冰没接岸</summary>
+        <div class="ans"><p>2月中旬是接岸概率最高的窗口，但不是100%。无冰时ガリンコ号照常出海改走观光航线；介意的话按官网规则改退。出发前一周看海上保安厅「海冰速报」判断接岸位置，必要时把 2/16 的上午班当作补拍机会。</p></div>
+      </details>
+      <details>
+        <summary>暴雪运休</summary>
+        <div class="ans"><p>石北线、钏网线冬季运休不罕见，B案最敏感。每晚看一眼 JR 北海道运行情报；关键衔接永远不要买「当日最后一班」。前车之鉴：2026年冬 WF 当天东京就下过大雪造成混乱，2/14 晚务必收拾停当。</p></div>
+      </details>
+      <details>
+        <summary>自驾这条路走不通</summary>
+        <div class="ans"><p>中国大陆驾照（含公证/翻译件）在日本不能合法驾驶，所以三版全部按公共交通设计。若7人里有日本或日内瓦公约缔约地驾照持有者，B案可改自驾大幅提升流畅度（雪路风险自担，需提前订雪胎车）。</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<section id="gear">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">出门前</p>
+      <h2>装备清单</h2>
+      <p class="lede">点一下划掉。7人团建议指定一个人统一带备用件（暖宝宝、冰爪、充电宝）。</p>
+    </div>
+    <div class="gear" id="gearlist"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>已核实（2026年7月）</b>：WF2027[冬] 为 2/13(六)–2/14(日) 双日开催、幕张Messe 1–8馆、36年来首次恢复双日（摊位两天同位置），前日搬入为 2/12；下届一般Dealer募集期 8/12–8/24；羽田⇄纹别每日仅 ANA375/376 一班、单程正价约¥24,000起；ガリンコ号III「IMERU」冬航季约1月中旬–3月下旬、单次约60分钟、有日出班与日落班；武汉现无直飞日本航班；中日航线自2025年11月起大面积减班、免费退改延至2026/10/24航季；ANA 现营运东京⇄北京、杭州等中国大陆航线。</p>
+    <p><b>待2027季官宣后复核</b>：2026/27冬春航季各中日航线班期（10月下旬定）、ANA375具体时刻与优惠运赁细则、2/21新千岁→北京首都/上海浦东当天班次、各巴士与观光列车冬季时刻、层云峡冰瀑祭·支笏湖冰涛祭·小樽雪灯之路会期、SL冬之湿原号运行日、流冰漫步开放预约时间。</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* ══ 数据 ═══════════════════════════════════════════ */
+
+const CITY = {
+  bj: {
+    name: "北京组", pax: 3, air: 4200,
+    out: "首都 / 大兴 → 羽田或成田，建议上午班、午后落地。优先 ANA / JAL 实际承运；国航等中方航司减班中，只作比价。",
+    back: "2/21 新千岁 → 北京首都直飞（国航，班期曾减至约3班/周，<b>出票前先核2/21当天有无班次</b>）。没有则 新千岁→羽田 转 羽田→北京，接不上就东京住一晚 2/22 回。",
+    extra: "3人同订，行李额与座位一起选；北京组是全团唯一有回程直飞可能的一组，值得多花时间盯。"
+  },
+  wh: {
+    name: "武汉组", pax: 2, air: 4600,
+    out: "<b>武汉无直飞日本航班</b>。2/10 先到杭州（高铁约4.5小时，或飞约1小时30分），住杭州一晚，2/11 与杭州组同乘一班进东京。",
+    back: "随杭州组 2/21 新千岁 → 上海浦东，再沪汉高铁约4.5小时（或浦东转国内航班）。当晚到武汉偏晚，也可在上海住一晚 2/22 回。",
+    extra: "机票口径已含武汉⇄杭州往返接驳约700元。别买「武汉出发」的联程——现在没有可靠的日本段承运，拼中转反而更贵更险。"
+  },
+  hz: {
+    name: "杭州组", pax: 2, air: 3800,
+    out: "萧山 → 成田或羽田。ANA 现营运东京⇄杭州（近期约每周21班），是三城里最稳的一条国际段。",
+    back: "新千岁无杭州直飞。2/21 新千岁 → 上海浦东（东航/吉祥/春秋，均在减班中），再沪杭高铁约1小时；或 新千岁→羽田 转 羽田→杭州。",
+    extra: "杭州组＋武汉组共4人同进同出，订房订车都按4人算，行李互相带得动。"
+  }
+};
+
+const SHARED = [
+  {
+    d: "2/10", w: "周三", tag: "PRE", title: "武汉 2 人前置移动",
+    li: [
+      "武汉 → 杭州：高铁约4.5小时（G字车次多），或飞约1小时30分。",
+      "住杭州机场周边或市区，次日与杭州组同班出发。",
+      "北京 3 人今天照常上班，行李当晚打包完。"
+    ],
+    note: "只有武汉组需要这一天。若不想多住一晚，也可选 2/11 清早武汉飞杭州（留足3小时中转余量，冬季华中易起雾）。"
+  },
+  {
+    d: "2/11", w: "周四 · 假日", tag: "D1", title: "两地出发，东京汇合",
+    li: [
+      "北京 3 人：首都/大兴 → 羽田/成田，上午班。",
+      "杭州 4 人（含武汉2人）：萧山 → 成田/羽田，上午班。",
+      "傍晚东京酒店集合，晚饭时对一遍车票与预约清单、分配公用物资。",
+      "<b>住宿4连泊（2/11–2/14夜）</b>：主推东京站八重洲口～日本桥（JR京叶线直达海滨幕张约33分钟）；省通勤版住海滨幕张站周边（APA东京湾幕张、新大谷幕张等）。"
+    ],
+    note: "2027年春节为2/6，2/11约在初六初七——出境高峰刚过、票价回落，但当下运力紧张，宁早勿晚。"
+  },
+  {
+    d: "2/12", w: "周五", tag: "D2", title: "搬入日 / 自由日",
+    li: [
+      "参展成员：下午进幕张Messe布展，按Dealer通知的搬入时段。",
+      "其他人：秋叶原（Volks、寿屋、Radio会馆）、中野百老汇淘老件、世界堂采买工具材料。",
+      "晚上幕张会合，确认次日开场动线与轮班表。"
+    ]
+  },
+  { d: "2/13", w: "周六", tag: "D3", title: "WF2027[冬] 第 1 天",
+    li: ["10:00–17:00 幕张Messe 1–8馆。双日开催，摊位两天同位置不轮换。", "7人建议排轮班：2人守摊、其余分头扫馆，午后换手。"] },
+  {
+    d: "2/14", w: "周日", tag: "D4", title: "WF 第 2 天 + 撤展 + 寄行李",
+    li: [
+      "17:00 散场后撤展。",
+      "<b>当晚关键动作</b>：战利品、展品、多余行李用ヤマト宅急便寄往札幌末段酒店（东京→北海道约2天）。寄前电话确认酒店可代收，写明入住日与姓名。",
+      "只留2–3天轻装行李飞纹别。"
+    ],
+    note: "2026年冬 WF 当天东京下过大雪造成混乱。今晚一定收拾停当，给明早通勤留足余量。"
+  },
+  {
+    d: "2/15", w: "周一", tag: "D5", title: "飞纹别 · 日落破冰航",
+    li: [
+      "08:00前后出发去羽田（东京站→羽田约40–50分钟）。",
+      "<b>ANA375 羽田→鄂霍次克纹别</b>：每日1班，上午出发、午后落地（近年约10:30起飞、12点台到达；2027年2月时刻以出票为准）。",
+      "机场巴士/出租进市区约15–20分钟，行李放酒店后去码头（机场到码头车程约10分钟）。",
+      "<b>15:00 或 16:00 前后的日落班 ガリンコ号III「IMERU」</b>：约60分钟（视冰况可延30分），成人约¥4,000–5,000，官网提前网络预约。日落班流冰染橙最出片。",
+      "时间富余顺路看海豹乐园、登冰海展望塔 Okhotsk Tower。",
+      "晚餐：纹别是毛蟹之乡，蟹会席或流冰季海鲜；市区2月还有「冰灯之街」冰烛点灯。",
+      "宿纹别：Hotel Okhotsk Palace / 纹别Prince / 纹别Central，含蟹晚餐方案建议9–10月下订。"
+    ]
+  }
+];
+
+const PLANS = {
+  A: {
+    name: "A · 道央经典线", one: "冰瀑祭 + 旭山动物园企鹅散步 + 小樽。首刷冬季北海道的均衡打卡，全程公共交通。",
+    chips: [["换床 4 次",""],["体力 ★★☆",""],["天气抗风险 中","ice"],["道内交通 约¥1.35万",""]],
+    days: [
+      { d:"2/16", w:"周二", tag:"D6", title:"纹别 → 层云峡温泉 · 冰瀑祭夜场",
+        li:["上午纹别自由：可加乘上午班破冰船，或海豹乐园 / 流冰科学中心。",
+            "都市间巴士「特急オホーツク号」纹别→旭川：约3小时、一天数班、约¥3,000+，可乘车2个月前预约。",
+            "旭川转道北巴士 旭川→层云峡：约1小时50分、约¥2,100。",
+            "宿层云峡温泉（朝阳亭、层云阁、Hotel大雪等，含二食）。",
+            "晚：<b>层云峡冰瀑祭夜场点灯</b>，会场就在温泉街旁，往年1月下旬–3月中旬、周末常有烟花。"],
+        more:"若当日巴士衔接不顺，改宿旭川、次日再进层云峡一日游；夜场看完点灯后乘祭典期间加开班次或出租返回（需当季确认）。7人建议提前把巴士座位一次订满，别分两班车。" },
+      { d:"2/17", w:"周三", tag:"D7", title:"银河·流星瀑布冰瀑 → 旭川",
+        li:["上午：银河·流星瀑布冰瀑近景、黑岳缆车（视风况）。",
+            "午后巴士回旭川。",
+            "傍晚：旭川拉面村，或成吉思汗「大黑屋」。",
+            "宿旭川站前。"] },
+      { d:"2/18", w:"周四", tag:"D8", title:"旭山动物园 → 札幌",
+        li:["<b>旭山动物园</b>：冬季约10:30–15:30，门票¥1,000；企鹅散步通常11:00 / 14:30 两场（以当季公告为准）。",
+            "傍晚 JR特急 Lilac/Kamui 旭川→札幌：约1小时25分、约¥5,000。",
+            "夜：藻岩山夜景或薄野。",
+            "宿札幌 3 连泊，前台取宅急便包裹。"],
+        more:"企鹅散步是本案的招牌画面，取决于当天气温（过暖会停）。想稳拍就上午先到、赶11:00那场。" },
+      { d:"2/19", w:"周五", tag:"D9", title:"小樽一日",
+        li:["JR 快速约40分钟。","运河、堺町通、北一硝子、LeTAO。","傍晚天狗山夜景或运河夜灯，回札幌。"] },
+      { d:"2/20", w:"周六", tag:"D10", title:"札幌收尾 / 支笏湖冰涛祭",
+        li:["二条市场早餐、北海道神宫雪参道、白色恋人公园。",
+            "或半日<b>支笏湖冰涛祭</b>（蓝冰建筑群，往年办至2月下旬，札幌/千岁有巴士）。",
+            "采买伴手礼、打包，宿札幌。"] },
+      { d:"2/21", w:"周日", tag:"D11", title:"新千岁 · 分手回国",
+        li:["JR 快速 Airport 约37分钟到新千岁。","北京3人与华中华东4人在此分手，各走自己的回程口径（见上方「三城进出」）。"] }
+    ]
+  },
+  B: {
+    name: "B · 道东狂野线", one: "流冰漫步 + 知床 + 阿寒 + 丹顶鹤 + SL蒸汽。一生一次级别，但换床6次、依赖冬季限定班次最多。",
+    chips: [["换床 6 次","hot"],["体力 ★★★","hot"],["天气抗风险 低","hot"],["道内交通+活动 约¥2.8万","hot"]],
+    days: [
+      { d:"2/16", w:"周二", tag:"D6", title:"纹别 → 网走",
+        li:["北纹巴士 纹别→远轻：约1.5小时、约¥1,500。",
+            "JR石北线 远轻→网走：约2小时。<b>石北线班次稀少，务必提前锁定当季时刻。</b>",
+            "下午：博物馆网走监狱 + 天都山 鄂霍次克流冰馆。",
+            "宿网走。"],
+        more:"已坐过ガリンコ号，网走破冰船「おーろら」可跳过；想对比船型的话次日清晨加乘一班（约¥4,000–5,000）。" },
+      { d:"2/17", w:"周三", tag:"D7", title:"流氷物語号 → 宇登吕 · 流冰漫步",
+        li:["上午 JR钏网线观光列车<b>「流氷物語号」网走→知床斜里</b>：约50分钟，车窗紧贴流冰海岸线。冬季限定，2027运行日待官宣，停开则乘普通列车。",
+            "斜里巴士→宇登吕温泉：约50分钟、约¥1,700。",
+            "<b>13:00 或 15:30 场 流氷ウォーク®</b>：穿干式潜水服踩上流冰，SHINRA / Picchio 等运营，一天约4场、约1.5小时、约¥6,000–7,000，含宇登吕地区酒店接送。2月中旬冰面最稳，正是官方推荐窗口。",
+            "宿宇登吕温泉（北こぶし知床、知床第一、KIKI知床等）。"],
+        more:"7人同场需要提早抢：预约一开放就下单，且把7人报在同一时段，否则会被拆到两场、接送车也分批。干式服内不宜穿厚羽绒，当天内搭轻便保暖。" },
+      { d:"2/18", w:"周四", tag:"D8", title:"宇登吕 → 阿寒湖温泉",
+        li:["早场可补一次流冰漫步，或 Furepe 瀑布雪鞋行。",
+            "午后 <b>东北海道 Express Bus（冬季限定·预约制）</b> 宇登吕→川汤/摩周→阿寒湖温泉：约3–3.5小时，冬季时刻通常秋季公布。",
+            "线路停开则改「斜里→摩周 JR + 阿寒巴士」，或7人拼包车。",
+            "夜：阿寒湖冰上村「冬華美」冰上烟花 + 爱努 Kotan。",
+            "宿阿寒湖温泉（鹤雅系等）。"] },
+      { d:"2/19", w:"周五", tag:"D9", title:"阿寒湖 → 钏路 · 币舞桥夕阳",
+        li:["上午：阿寒湖冰上垂钓西太公鱼，现炸天妇罗。",
+            "午后阿寒巴士→钏路：约2小时、约¥2,800。",
+            "16:40前后到<b>币舞桥</b>看「世界三大夕阳」之一的冬季落日。",
+            "炉端烧晚餐，宿钏路。"] },
+      { d:"2/20", w:"周六", tag:"D10", title:"SL冬之湿原号 / 丹顶鹤 → 札幌",
+        li:["二选一：① <b>SL冬之湿原号</b> 钏路⇄标茶往返，冬季限定、全车指定席、单程约¥3,000，<b>乘车日1个月前发售、开票即秒</b>（即约1/20开抢）。",
+            "② 阿寒国际鹤中心 / 鹤见台看<b>丹顶鹤求偶之舞</b>，2月正是季节。",
+            "午后 JR特急大空 钏路→札幌：约4小时20分、约¥10,000。",
+            "宿札幌站前，取宅急便包裹。"],
+        more:"7张SL指定席同时抢难度不小。现实做法：分两组各抢、抢到多少算多少，没抢到的当天去看丹顶鹤，傍晚在钏路站合流。" },
+      { d:"2/21", w:"周日", tag:"D11", title:"新千岁 · 分手回国",
+        li:["札幌 → 新千岁约37分钟。","本案落地札幌已是2/20夜，回程务必留足缓冲：JR若因雪停运，改高速巴士（约1小时40分）。"] }
+    ]
+  },
+  C: {
+    name: "C · 札幌大本营慢游线", one: "纹别后直达札幌5连泊、只搬一次家。温泉美食购物为主，7人体力兴趣有差异时最稳。",
+    chips: [["换床 1 次","ice"],["体力 ★☆☆","ice"],["天气抗风险 高","ice"],["道内交通 约¥0.9万","ice"]],
+    days: [
+      { d:"2/16", w:"周二", tag:"D6", title:"纹别 → 札幌直达，安营",
+        li:["上午纹别自由：海豹乐园 / 加乘破冰船 / 流冰科学中心「极寒体验室」。",
+            "午后 <b>高速巴士「流氷もんべつ号」纹别→札幌直行</b>：约4小时20分、约¥5,500，预约制、乘车2个月前开订。",
+            "傍晚抵札幌，入住大通 / 札幌站前 <b>5 连泊</b>，宅急便包裹已在前台等着。"],
+        more:"7人预约同一班巴士要早订（预约制、座位有限）。这一趟车是C案的全部搬家成本——之后五天不再拖箱子，7人团的体力和脾气都省下来了。" },
+      { d:"2/17", w:"周三", tag:"D7", title:"札幌市内",
+        li:["北海道神宫雪参道 → 圆山 → 场外市场海鲜午餐。","大仓山跳台 + 奥运博物馆。","晚：成吉思汗烤肉。"] },
+      { d:"2/18", w:"周四", tag:"D8", title:"小樽一日",
+        li:["JR 快速约40分钟；运河、堺町通、北一硝子、LeTAO。","小樽「雪灯之路」往年多在2月上中旬，2027若会期延后撞上属加分，以官宣为准。"] },
+      { d:"2/19", w:"周五", tag:"D9", title:"分头玩：温泉 或 滑雪",
+        li:["① 定山溪温泉日归：直通巴士，雪见露天 + 午餐套票。",
+            "② 札幌国际 / 手稻滑雪场半日体验课：含教练与租板，零基础友好。",
+            "这天是7人团的减压阀——两组分头，晚上薄野合流。"],
+        more:"想加流冰漫步的人，也可以把 2/17–2/18 换成「知床两日小分队」（网走—宇登吕—流冰walk—回札幌），大本营不动、行李留在札幌酒店，是C案里塞进B案精华的办法。" },
+      { d:"2/20", w:"周六", tag:"D10", title:"支笏湖冰涛祭 + 扫货",
+        li:["半日<b>支笏湖冰涛祭</b>：蓝冰建筑群，往年办至2月下旬。","回札幌狸小路 / 唐吉诃德 / 大丸扫货、打包。"] },
+      { d:"2/21", w:"周日", tag:"D11", title:"新千岁 · 分手回国",
+        li:["JR 快速 Airport 约37分钟。","时间富余可逛机场内哆啦A梦乐园、Royce巧克力世界。"] }
+    ]
+  }
+};
+
+/* 费用模型：日本境内按日元，机票按人民币 */
+const COST = {
+  tokyoHotelNight: { eco: 7000, std: 10000, lux: 15000 },
+  monbetsuNight:   { eco: 9000, std: 12500, lux: 17000 },
+  crabAdd:         { eco: 2000, std: 2500,  lux: 3000  },
+  lateNight: {
+    A: { eco: 9000,  std: 12000, lux: 17000 },
+    B: { eco: 12000, std: 16000, lux: 21000 },
+    C: { eco: 7500,  std: 10000, lux: 14000 }
+  },
+  hokkaidoTransit: { A: 13500, B: 28000, C: 9000 },
+  tickets:         { A: 6000,  B: 14000, C: 6000 },
+  food: {
+    A: { eco: 30000, std: 42000, lux: 58000 },
+    B: { eco: 36000, std: 48000, lux: 64000 },
+    C: { eco: 30000, std: 42000, lux: 58000 }
+  },
+  garinko: 5000,
+  tokyoMisc: 8000,
+  yamato: 2500,
+  monbetsuAir: { normal: 24000, ejf: 13000 }
+};
+
+const TASKS = [
+  { when: "现在 · 本周", t: "出 ANA375 羽田→纹别 ×7", em: "全程唯一无替代的一段，一天一班先到先得。7张开在同一预订号，遇取消可整团一起改。", from: "2026-07-01", to: "2026-08-31" },
+  { when: "8/12–8/24", t: "WF2027[冬] 一般Dealer 申请", em: "要摊位的话就这个窗口，错过没有补录。", from: "2026-08-12", to: "2026-08-24" },
+  { when: "8月", t: "圈定各段住宿、开始比价", em: "东京4晚、纹别1晚、末段5晚（按所选方案）。", from: "2026-08-01", to: "2026-09-15" },
+  { when: "9–10月", t: "纹别住宿下订（含蟹会席方案）", em: "流冰季紧俏，好在2/15是周一，比周末好订。", from: "2026-09-01", to: "2026-10-31" },
+  { when: "10月下旬", t: "复核 2026/27 冬春航季中日班期", em: "航季10/25起，届时才知道 2/11 进、2/21 出各城有哪些班。这一步定了再出国际段。", from: "2026-10-20", to: "2026-11-15" },
+  { when: "10–11月", t: "出国际段：北京3人、杭州4人", em: "优先 ANA/JAL 实际承运；北京回程先核 2/21 新千岁→首都当天有无班次。", from: "2026-10-25", to: "2026-11-30" },
+  { when: "11–12月", t: "订末段住宿与限定班次", em: "层云峡/宇登吕/阿寒湖住宿；流冰walk开放即订（B案）；东北海道 Express Bus 冬季时刻公布后锁定（B案）。", from: "2026-11-01", to: "2026-12-31" },
+  { when: "乘车前2个月", t: "巴士开订：流氷もんべつ号 / 特急オホーツク号", em: "预约制，2/16 乘车即 12/16 前后开订（C案 / A案）。", from: "2026-12-10", to: "2027-01-10" },
+  { when: "12月", t: "ガリンコ号 2/15 日落班网络预约", em: "官网开放2027季后立即锁定7人同班。", from: "2026-12-01", to: "2027-01-31" },
+  { when: "1月上旬", t: "全员签证办妥", em: "7人材料一起递，留缓冲；武汉2人注意领区归属。", from: "2027-01-01", to: "2027-01-25" },
+  { when: "约 1/20", t: "SL冬之湿原号指定席（B案）", em: "2/20 的票约 1/20 开售，开票即秒，分两组各抢。", from: "2027-01-18", to: "2027-01-22" },
+  { when: "1月", t: "宅急便与末段酒店代收确认", em: "电话确认札幌酒店可代收包裹，记下入住日与姓名写法。", from: "2027-01-15", to: "2027-02-05" },
+  { when: "出发前1周", t: "三查：ANA375、JR运行情报、海冰速报", em: "海上保安厅「海冰速报」看流冰接岸位置，必要时把2/16上午班当补拍机会。", from: "2027-02-04", to: "2027-02-11" }
+];
+
+const GEAR = ["防滑冰爪（便利店可买）","防水雪地靴","速干内层 ×3","抓绒 / 薄羽绒","防风外壳","暖宝宝 ×20","充电宝（贴身放，低温掉电快）","墨镜（防雪盲）","护照 + 复印件","现金日元（小站不刷卡）","相机备用电池 ×2","便携三脚架（拍日落流冰）","口罩 / 润唇膏","转换插头","宅急便用的大号收纳袋","干式服内的轻便保暖内搭（流冰walk日）"];
+
+/* ══ 状态 ═══════════════════════════════════════════ */
+let plan = "A", city = "bj";
+const $ = (s) => document.querySelector(s);
+
+/* ══ 渲染：方案与逐日 ═══════════════════════════════ */
+function dayCard(x, locked) {
+  const el = document.createElement("div");
+  el.className = "day" + (locked ? " locked" : "");
+  const items = x.li.map((s) => "<li>" + s + "</li>").join("");
+  el.innerHTML =
+    '<div class="gutter"><div class="d">' + x.d + '</div><div class="w">' + x.w + '</div>' +
+    '<div class="tag">' + x.tag + '</div></div>' +
+    '<div class="body"><h3>' + x.title + '</h3><ul>' + items + '</ul>' +
+    (x.note ? '<div class="note">' + x.note + '</div>' : '') +
+    (x.more ? '<details class="more"><summary>7人团的实操细节</summary><div class="inner"><p>' + x.more + '</p></div></details>' : '') +
+    '</div>';
+  return el;
+}
+
+function renderPlan() {
+  const p = PLANS[plan];
+  $("#p-eyebrow").textContent = "方案 " + plan + " · 共用骨架 2/11–2/15 + 北海道段 2/16–2/21";
+  $("#p-name").textContent = p.name;
+  $("#p-one").textContent = p.one;
+  $("#p-chips").innerHTML = p.chips.map((c) => '<span class="chip ' + c[1] + '">' + c[0] + '</span>').join("");
+
+  const host = $("#days");
+  host.textContent = "";
+  const shared = city === "wh" ? SHARED : SHARED.slice(1);
+  shared.forEach((x) => host.appendChild(dayCard(x, true)));
+  p.days.forEach((x) => host.appendChild(dayCard(x, false)));
+}
+
+/* ══ 渲染：三城 ═════════════════════════════════════ */
+function renderCities() {
+  $("#cities").innerHTML = Object.keys(CITY).map((k) => {
+    const c = CITY[k];
+    return '<div class="card' + (k === city ? " on" : "") + '">' +
+      '<h3>' + c.name + '<span class="pax">' + c.pax + ' 人</span></h3>' +
+      '<dl><dt>去程 2/11</dt><dd>' + c.out + '</dd>' +
+      '<dt>回程 2/21</dt><dd>' + c.back + '</dd>' +
+      '<dt>要点</dt><dd>' + c.extra + '</dd></dl></div>';
+  }).join("");
+}
+
+/* ══ 计算 ═══════════════════════════════════════════ */
+function lines(planKey, cityKey) {
+  const tier = $("#f-tier").value;
+  const single = $("#f-room").value === "single";
+  const mult = single ? 1.75 : 1;
+  const crab = $("#f-crab").checked;
+  const ejf = $("#f-ejf").checked;
+  const yamato = $("#f-yamato").checked;
+  const c = CITY[cityKey];
+
+  const jpy = [];
+  jpy.push(["羽田→纹别 单程", (ejf ? COST.monbetsuAir.ejf : COST.monbetsuAir.normal), ejf ? "ANA 访日外国人优惠运赁" : "正价 / 早割"]);
+  jpy.push(["东京 4 晚", Math.round(COST.tokyoHotelNight[tier] * 4 * mult), single ? "单人房" : "双人房分摊"]);
+  jpy.push(["纹别 1 晚", Math.round((COST.monbetsuNight[tier] + (crab ? COST.crabAdd[tier] : 0)) * mult), crab ? "含毛蟹会席二食" : "不含晚餐"]);
+  jpy.push(["北海道后段 5 晚", Math.round(COST.lateNight[planKey][tier] * 5 * mult), planKey === "C" ? "札幌 5 连泊" : (planKey === "B" ? "含 2 晚温泉二食" : "含 1 晚温泉二食")]);
+  jpy.push(["ガリンコ号III 日落班", COST.garinko, "2/15 · 约60分钟"]);
+  jpy.push(["北海道段交通", COST.hokkaidoTransit[planKey], planKey === "B" ? "含冬季限定列车与预约巴士" : "巴士 + JR"]);
+  jpy.push(["活动门票", COST.tickets[planKey], planKey === "B" ? "含流冰漫步、SL" : "祭典 / 动物园等"]);
+  jpy.push(["东京段杂费", COST.tokyoMisc, "WF入场 + 都内交通"]);
+  if (yamato) jpy.push(["宅急便 东京→札幌", COST.yamato, "2/14 晚寄出"]);
+  jpy.push(["餐饮与杂支", COST.food[planKey][tier], "11 天"]);
+
+  return { jpy: jpy, air: c.air, airNote: cityKey === "wh" ? "含武汉⇄杭州接驳约700元" : "往返中值" };
+}
+
+function totals(planKey, cityKey) {
+  const rate = Math.max(1, parseFloat($("#f-rate").value) || 20);
+  const L = lines(planKey, cityKey);
+  const jpySum = L.jpy.reduce((a, b) => a + b[1], 0);
+  return { rate: rate, L: L, jpySum: jpySum, per: Math.round(jpySum / rate + L.air) };
+}
+
+const fmt = (n) => n.toLocaleString("en-US");
+
+function renderMoney() {
+  const T = totals(plan, city);
+  const rows = T.L.jpy.map((r) =>
+    '<tr><td>' + r[0] + '<div class="sub">' + r[2] + '</div></td>' +
+    '<td class="n">¥' + fmt(r[1]) + '</td>' +
+    '<td class="n">' + fmt(Math.round(r[1] / T.rate)) + '</td></tr>'
+  ).join("");
+
+  const airRow =
+    '<tr><td>国际机票 · ' + CITY[city].name + '<div class="sub">' + T.L.airNote + '</div></td>' +
+    '<td class="n">—</td><td class="n">' + fmt(T.L.air) + '</td></tr>';
+
+  $("#bill").innerHTML = rows + airRow +
+    '<tr class="total"><td>人均合计</td><td class="n">¥' + fmt(T.jpySum) + '</td><td class="n">' + fmt(T.per) + ' 元</td></tr>';
+
+  $("#t-per").innerHTML = fmt(T.per) + '<small> 元</small>';
+  $("#t-jpy").innerHTML = fmt(T.jpySum) + '<small> 日元</small>';
+
+  const team = Object.keys(CITY).reduce((a, k) => a + totals(plan, k).per * CITY[k].pax, 0);
+  $("#t-team").innerHTML = fmt(team) + '<small> 元</small>';
+
+  // 三版人均对比（单一色相，量级比较）
+  const vals = ["A", "B", "C"].map((k) => ({ k: k, v: totals(k, city).per }));
+  const max = Math.max.apply(null, vals.map((x) => x.v));
+  $("#bars").innerHTML = vals.map((x) =>
+    '<div class="barrow' + (x.k === plan ? " on" : "") + '">' +
+    '<div class="lab">' + x.k + ' ' + PLANS[x.k].name.split(" · ")[1] + '</div>' +
+    '<div class="track"><div class="fill" style="width:' + Math.round(x.v / max * 100) +
+    '%;opacity:' + (x.k === plan ? 1 : .45) + '"></div></div>' +
+    '<div class="val">' + fmt(x.v) + '</div></div>'
+  ).join("");
+}
+
+/* ══ 对比表 ═════════════════════════════════════════ */
+const CMP = [
+  ["核心体验", "冰瀑祭 · 企鹅散步 · 小樽", "流冰漫步 · 知床 · 丹顶鹤 · SL", "温泉 · 美食 · 购物 · 冰涛祭"],
+  ["道内换床", "4 次", "6 次", "1 次"],
+  ["体力强度", "★★☆", "★★★", "★☆☆"],
+  ["交通复杂度", "中", "高（冬季限定班次最多）", "低"],
+  ["天气抗风险", "中", "低（石北 / 钏网线易运休）", "高"],
+  ["必抢的票", "层云峡巴士、旭山企鹅场次", "流冰walk、流氷物語号、Express Bus、SL指定席", "流氷もんべつ号巴士"],
+  ["7人协同难度", "中：巴士需整团同班", "高：4项限定名额要7人同场", "低：大本营不动，可随时分组"],
+  ["适合", "首刷北海道", "摄影党 / 自然党", "混合体力团"]
+];
+function renderCmp() {
+  const t = $("#cmp");
+  const head = '<thead><tr><th></th><th>A 道央经典</th><th>B 道东狂野</th><th>C 札幌慢游</th></tr></thead>';
+  const body = '<tbody>' + CMP.map((r) =>
+    '<tr><th>' + r[0] + '</th>' +
+    ['A', 'B', 'C'].map((k, i) => '<td class="' + (k === plan ? 'on' : '') + '">' + r[i + 1] + '</td>').join("") +
+    '</tr>').join("") + '</tbody>';
+  const cg = t.querySelector("colgroup").outerHTML;
+  t.innerHTML = cg + head + body;
+}
+
+/* ══ 清单 ═══════════════════════════════════════════ */
+const KEY = "hkd2027.";
+function store(k, v) { try { localStorage.setItem(KEY + k, v ? "1" : ""); } catch (e) {} }
+function load(k) { try { return !!localStorage.getItem(KEY + k); } catch (e) { return false; } }
+
+function renderTasks() {
+  const now = new Date();
+  const host = $("#tasks");
+  host.textContent = "";
+  TASKS.forEach((x, i) => {
+    const open = now >= new Date(x.from) && now <= new Date(x.to);
+    const row = document.createElement("label");
+    row.className = "task";
+    row.dataset.urgent = open ? "1" : "0";
+    const id = "t" + i;
+    const done = load(id);
+    if (done) row.classList.add("done");
+    row.innerHTML = '<input type="checkbox"' + (done ? " checked" : "") + '>' +
+      '<span class="t">' + x.t + '<em>' + x.em + '</em></span>' +
+      '<span class="when">' + x.when + (open ? " ●" : "") + '</span>';
+    row.querySelector("input").addEventListener("change", (e) => {
+      store(id, e.target.checked);
+      row.classList.toggle("done", e.target.checked);
+      progress();
+    });
+    host.appendChild(row);
+  });
+  progress();
+}
+function progress() {
+  const all = document.querySelectorAll("#tasks input");
+  const done = document.querySelectorAll("#tasks input:checked").length;
+  $("#prog").style.width = all.length ? (done / all.length * 100) + "%" : "0";
+}
+
+function renderGear() {
+  $("#gearlist").innerHTML = GEAR.map((g, i) =>
+    '<label><input type="checkbox" data-g="g' + i + '"' + (load("g" + i) ? " checked" : "") + '>' + g + '</label>'
+  ).join("");
+  document.querySelectorAll('#gearlist input').forEach((el) => {
+    el.addEventListener("change", (e) => store(e.target.dataset.g, e.target.checked));
+  });
+}
+
+/* ══ 倒计时 ═════════════════════════════════════════ */
+function countdown() {
+  const day = 864e5, now = new Date();
+  const to = (s) => Math.ceil((new Date(s) - now) / day);
+  $("#cd-wf").textContent = Math.max(0, to("2027-02-13"));
+  $("#cd-dealer").textContent = Math.max(0, to("2026-08-12"));
+}
+
+/* ══ 绑定 ═══════════════════════════════════════════ */
+function seg(sel, attr, fn) {
+  document.querySelectorAll(sel + " button").forEach((b) => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll(sel + " button").forEach((o) => o.setAttribute("aria-selected", "false"));
+      b.setAttribute("aria-selected", "true");
+      fn(b.dataset[attr]);
+    });
+  });
+}
+seg("#seg-plan", "plan", (v) => { plan = v; renderPlan(); renderMoney(); renderCmp(); });
+seg("#seg-city", "city", (v) => { city = v; renderPlan(); renderCities(); renderMoney(); });
+
+["#f-tier", "#f-room", "#f-rate", "#f-ejf", "#f-crab", "#f-yamato"].forEach((s) => {
+  $(s).addEventListener("input", renderMoney);
+  $(s).addEventListener("change", renderMoney);
+});
+
+countdown();
+renderPlan();
+renderCities();
+renderMoney();
+renderCmp();
+renderTasks();
+renderGear();
+</script>
+
+</body>
+</html>
