@@ -123,6 +123,33 @@ section > .wrap > p.lede { color: var(--ink-2); font-size: 14.5px; max-width: 58
 .route[aria-pressed="true"] .picked { display: block; }
 .hintline { margin-top: 14px; font-size: 13.5px; color: var(--ink-2); border-left: 2px solid var(--drill); padding: 6px 12px; background: var(--surface); border-radius: 0 4px 4px 0; }
 
+/* ── 地图 ─────────────────────────────── */
+.mapwrap { margin-top: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 10px 6px; }
+.mapwrap svg.geo { width: 100%; height: auto; display: block; }
+.geo .sea { fill: var(--sea); opacity: .1; }
+.geo .land { fill: var(--sunk); stroke: var(--line); stroke-width: 2; stroke-linejoin: round; }
+.geo .floe { fill: var(--floe); opacity: .85; }
+.geo .rail { fill: none; stroke: var(--ink-3); stroke-width: 2.6; stroke-dasharray: 2 6; stroke-linecap: round; opacity: .9; }
+.geo .leg { fill: none; stroke: var(--ice); stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.geo .air { fill: none; stroke: var(--drill); stroke-width: 2.2; stroke-dasharray: 7 6; stroke-linecap: round; }
+.geo .stop { cursor: pointer; }
+.geo .stop circle { fill: var(--surface); stroke: var(--ice); stroke-width: 3; transition: r .18s ease; }
+.geo .stop text { font-family: var(--sans); font-size: 13px; fill: var(--ink-2); paint-order: stroke;
+  stroke: var(--surface); stroke-width: 3.5; stroke-linejoin: round; }
+.geo .stop:hover circle, .geo .stop:focus-visible circle { fill: var(--ice-soft); }
+.geo .stop:hover text { fill: var(--ink); }
+.geo .stop.on circle { fill: var(--drill); stroke: var(--drill); }
+.geo .stop.on text { fill: var(--ink); font-weight: 600; }
+.geo .tag { font-family: var(--mono); font-size: 11px; fill: var(--ink-3); paint-order: stroke;
+  stroke: var(--surface); stroke-width: 3.5; }
+.mapcap { display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 6px 6px 4px; font-size: 12px; color: var(--ink-3); }
+.mapcap b { color: var(--ink-2); font-weight: 400; }
+.mapcap i { font-style: normal; display: inline-flex; align-items: center; gap: 5px; }
+.mapcap i::before { content: ""; width: 16px; height: 0; border-top: 3px solid var(--ice); border-radius: 2px; }
+.mapcap i.air::before { border-top: 2px dashed var(--drill); }
+.mapcap i.rail::before { border-top: 2px dashed var(--ink-3); }
+@media (prefers-reduced-motion: reduce) { .geo .stop circle { transition: none; } }
+
 /* ── 时间轴 ───────────────────────────── */
 .tl { margin-top: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); overflow: hidden; }
 .tl details { border-top: 1px solid var(--hair); }
@@ -312,7 +339,11 @@ footer details.fold { margin-top: 0; }
   <div class="wrap">
     <p class="eyebrow">第二步</p>
     <h2 id="days-h">行程</h2>
-    <p class="lede">点任意一天展开细节。除了 2/10 武汉 2 人先到杭州，其余每天 7 个人都在一起。</p>
+    <p class="lede">点地图上的站点，或点任意一天，都能展开当天细节。除了 2/10 武汉 2 人先到杭州，其余每天 7 个人都在一起。</p>
+    <div class="mapwrap">
+      <svg class="geo" id="geo" viewBox="-14 -14 512 470" role="img" aria-label="北海道行程路线图"></svg>
+      <div class="mapcap" id="mapcap"></div>
+    </div>
     <div class="tl" id="tl"></div>
   </div>
 </section>
@@ -446,7 +477,7 @@ const SHARED = [
   { d:"2/14", w:"周日", ic:"i-ticket", all:true, t:"WF 第 2 天 + 寄行李", s:"散场后撤展，大件宅急便寄札幌",
     li:["17:00 散场后撤展。","<b>当晚关键动作</b>：战利品、展品、多余行李用ヤマト宅急便寄往札幌末段酒店（约2天到）。寄前电话确认酒店可代收，写明入住日与姓名。","只留 2–3 天轻装行李飞纹别。"],
     tip:"2026年冬 WF 当天东京下过大雪造成混乱。今晚收拾停当，给明早通勤留余量。" },
-  { d:"2/15", w:"周一", ic:"i-ship", lock:true, t:"飞纹别 · 日落破冰航", s:"ANA375 一班机 + ガリンコ号III",
+  { d:"2/15", w:"周一", ic:"i-ship", lock:true, at:"mbe", t:"飞纹别 · 日落破冰航", s:"ANA375 一班机 + ガリンコ号III",
     li:["08:00前后去羽田（东京站→羽田约40–50分钟）。","<b>ANA375 羽田 10:35 → 鄂霍次克纹别 12:20</b>（1小时45分，波音737-800）——2027年2月订票页面上的实际时刻，每日仅此一班。","机场到市区约15–20分钟，行李放酒店后去码头（机场到码头约10分钟）。","<b>15:00 或 16:00 前后日落班 ガリンコ号III「IMERU」</b>：约60分钟（视冰况可延30分），成人约¥4,000–5,000，官网预约。日落班流冰染橙最出片。","富余可看海豹乐园、登冰海展望塔 Okhotsk Tower。","晚餐毛蟹会席或流冰季海鲜；市区2月有「冰灯之街」冰烛点灯。","宿纹别：Hotel Okhotsk Palace / 纹别Prince / 纹别Central。","回程同班号 <b>NH376 纹别 13:05 → 羽田 14:55</b>——我们不用（要继续往北海道走），但如果改成「东京往返纹别」的形状，就是这一班。"],
     tip:"羽田⇄纹别一天只有 ANA375 这一班，7 张票尽量开在同一预订号里，遇取消能一起改。12:20 落地、15:00/16:00 上船，中间约 2.5 小时办入住加吃午饭，够用但不宽裕，行李直接寄酒店别拖去码头。" }
 ];
@@ -455,56 +486,56 @@ const PLANS = {
   A: { name:"道央经典", one:"层云峡冰瀑祭 + 旭山企鹅散步 + 小樽", short:"道央经典",
     facts:[["换床 4 次",0],["体力 ★★☆",0],["道内 ¥1.35万",0]],
     days:[
-      { d:"2/16", w:"周二", ic:"i-ice", t:"纹别 → 层云峡温泉", s:"巴士 3h + 冰瀑祭夜场点灯",
+      { d:"2/16", w:"周二", ic:"i-ice", at:"soun", t:"纹别 → 层云峡温泉", s:"巴士 3h + 冰瀑祭夜场点灯",
         li:["上午纹别自由：加乘上午班破冰船，或海豹乐园 / 流冰科学中心。","「特急オホーツク号」纹别→旭川约3小时、约¥3,000+，乘车2个月前可预约。","道北巴士 旭川→层云峡约1小时50分、约¥2,100。","宿层云峡温泉（朝阳亭、层云阁、Hotel大雪，含二食）。","晚：<b>层云峡冰瀑祭夜场点灯</b>，会场就在温泉街旁，周末常有烟花。"],
         tip:"7 张巴士座位一次订满，别分两班车。衔接不顺可改宿旭川、次日再进层云峡一日游。" },
-      { d:"2/17", w:"周三", ic:"i-mtn", t:"银河·流星瀑布冰瀑", s:"黑岳缆车，傍晚旭川拉面",
+      { d:"2/17", w:"周三", ic:"i-mtn", at:"soun", t:"银河·流星瀑布冰瀑", s:"黑岳缆车，傍晚旭川拉面",
         li:["上午银河·流星瀑布冰瀑近景、黑岳缆车（视风况）。","午后巴士回旭川。","傍晚旭川拉面村，或成吉思汗「大黑屋」。","宿旭川站前。"] },
-      { d:"2/18", w:"周四", ic:"i-bird", t:"旭山动物园 → 札幌", s:"企鹅散步 11:00 / 14:30",
+      { d:"2/18", w:"周四", ic:"i-bird", at:"asa", t:"旭山动物园 → 札幌", s:"企鹅散步 11:00 / 14:30",
         li:["<b>旭山动物园</b>冬季约10:30–15:30，门票¥1,000；企鹅散步通常两场（过暖会停）。","傍晚 JR特急 Lilac/Kamui 旭川→札幌约1小时25分、约¥5,000。","夜：藻岩山夜景或薄野。","宿札幌 3 连泊，前台取宅急便包裹。"],
         tip:"企鹅散步是这条线的招牌画面。想稳拍就上午先到，赶 11:00 那场。" },
-      { d:"2/19", w:"周五", ic:"i-shop", t:"小樽一日", s:"运河 · 北一硝子 · 天狗山",
+      { d:"2/19", w:"周五", ic:"i-shop", at:"otr", t:"小樽一日", s:"运河 · 北一硝子 · 天狗山",
         li:["JR 快速约40分钟。","运河、堺町通、北一硝子、LeTAO。","傍晚天狗山夜景或运河夜灯，回札幌。"] },
-      { d:"2/20", w:"周六", ic:"i-ice", t:"札幌收尾 / 支笏湖冰涛祭", s:"蓝冰建筑群，或市内扫货",
+      { d:"2/20", w:"周六", ic:"i-ice", at:"sik", t:"札幌收尾 / 支笏湖冰涛祭", s:"蓝冰建筑群，或市内扫货",
         li:["二条市场早餐、北海道神宫雪参道、白色恋人公园。","或半日<b>支笏湖冰涛祭</b>（蓝冰建筑群，往年办至2月下旬，札幌/千岁有巴士）。","采买伴手礼、打包，宿札幌。"] },
-      { d:"2/21", w:"周日", ic:"i-plane", all:true, t:"新千岁分手", s:"JR 快速 Airport 37 分钟",
+      { d:"2/21", w:"周日", ic:"i-plane", all:true, at:"cts", t:"新千岁分手", s:"JR 快速 Airport 37 分钟",
         li:["札幌 → 新千岁约37分钟。","各组按自己的回程口径走（见「怎么飞」）。"] }
     ] },
   B: { name:"道东狂野", one:"知床流冰漫步 + 阿寒 + 丹顶鹤 + SL蒸汽", short:"道东狂野",
     facts:[["换床 6 次",1],["体力 ★★★",1],["道内 ¥2.8万",1]],
     days:[
-      { d:"2/16", w:"周二", ic:"i-train", t:"纹别 → 网走", s:"石北线，监狱博物馆 + 流冰馆",
+      { d:"2/16", w:"周二", ic:"i-train", at:"abs", t:"纹别 → 网走", s:"石北线，监狱博物馆 + 流冰馆",
         li:["北纹巴士 纹别→远轻约1.5小时、约¥1,500。","JR石北线 远轻→网走约2小时。<b>班次稀少，务必提前锁定当季时刻。</b>","下午：博物馆网走监狱 + 天都山鄂霍次克流冰馆。","宿网走。"],
         tip:"已坐过ガリンコ号，网走「おーろら」可跳过；想对比船型的话次日清晨加乘一班（约¥4,000–5,000）。" },
-      { d:"2/17", w:"周三", ic:"i-ice", t:"流氷物語号 → 流冰漫步", s:"穿干式服踩上流冰，1.5h",
+      { d:"2/17", w:"周三", ic:"i-ice", at:"utr", t:"流氷物語号 → 流冰漫步", s:"穿干式服踩上流冰，1.5h",
         li:["上午 JR钏网线<b>「流氷物語号」</b>网走→知床斜里约50分钟，车窗紧贴流冰海岸线（冬季限定，2027运行日待官宣）。","沿线看点按站排：<b>北浜</b>（站台紧贴鄂霍次克海，流冰季最出片的一站）、<b>浜小清水</b>、<b>止别</b>；再往南 <b>绿</b> 站可望斜里岳。钏网线全线 网走→钏路 约 3 小时 22 分，我们只坐最北这 50 分钟。","斜里巴士→宇登吕温泉约50分钟、约¥1,700。","<b>13:00 或 15:30 场 流氷ウォーク®</b>：约1.5小时、约¥6,000–7,000，含宇登吕地区酒店接送。2月中旬冰面最稳，正是官方推荐窗口。","宿宇登吕温泉（北こぶし知床、知床第一、KIKI知床）。"],
         tip:"<b>7 人要报同一场次</b>，预约一开放就下单，否则会被拆到两场、接送车也分批。干式服内别穿厚羽绒，内搭轻便保暖。" },
-      { d:"2/18", w:"周四", ic:"i-onsen", t:"宇登吕 → 阿寒湖温泉", s:"冬季限定巴士 3h，冰上烟花",
+      { d:"2/18", w:"周四", ic:"i-onsen", at:"akn", t:"宇登吕 → 阿寒湖温泉", s:"冬季限定巴士 3h，冰上烟花",
         li:["早场可补一次流冰漫步，或 Furepe 瀑布雪鞋行。","午后 <b>东北海道 Express Bus（冬季限定·预约制）</b> 宇登吕→川汤/摩周→阿寒湖温泉约3–3.5小时，冬季时刻通常秋季公布。","停开则改「斜里→摩周 JR + 阿寒巴士」，或 7 人拼两辆包车。","夜：阿寒湖冰上村「冬華美」冰上烟花 + 爱努 Kotan。","宿阿寒湖温泉（鹤雅系）。"] },
-      { d:"2/19", w:"周五", ic:"i-sun", t:"阿寒湖 → 钏路", s:"冰上垂钓，币舞桥落日",
+      { d:"2/19", w:"周五", ic:"i-sun", at:"kus", t:"阿寒湖 → 钏路", s:"冰上垂钓，币舞桥落日",
         li:["上午阿寒湖冰上垂钓西太公鱼，现炸天妇罗。","午后阿寒巴士→钏路约2小时、约¥2,800。","16:40前后到<b>币舞桥</b>看「世界三大夕阳」之一的冬季落日。","炉端烧晚餐，宿钏路。"] },
-      { d:"2/20", w:"周六", ic:"i-bird", t:"SL蒸汽 / 丹顶鹤 → 札幌", s:"二选一，午后特急大空",
+      { d:"2/20", w:"周六", ic:"i-bird", at:"sbc", t:"SL蒸汽 / 丹顶鹤 → 札幌", s:"二选一，午后特急大空",
         li:["① <b>SL冬之湿原号</b> 钏路⇄标茶（钏网线南段，沿钏路湿原走），全车指定席、单程约¥3,000，<b>乘车日1个月前发售、开票即秒</b>（约1/20开抢）。","沿途 <b>茅沼～塘路</b> 一段是钏路湿原的绝景区间，丹顶鹤常在车窗外的湿原上；不坐 SL 的话，普通列车走同一段也看得到。","② 阿寒国际鹤中心 / 鹤见台看<b>丹顶鹤求偶之舞</b>，2月正是季节。","午后 JR特急大空 钏路→札幌约4小时20分、约¥10,000。","宿札幌站前，取包裹。"],
         tip:"7 张 SL 指定席同时抢难度不小。分两三个人各抢、抢到多少算多少，没抢到的去看丹顶鹤，傍晚钏路站合流。" },
-      { d:"2/21", w:"周日", ic:"i-plane", all:true, t:"新千岁分手", s:"落地札幌才隔一夜，留缓冲",
+      { d:"2/21", w:"周日", ic:"i-plane", all:true, at:"cts", t:"新千岁分手", s:"落地札幌才隔一夜，留缓冲",
         li:["札幌 → 新千岁约37分钟。","本案 2/20 夜才到札幌，回程务必留足缓冲：JR 因雪停运就改高速巴士（约1小时40分）。"] }
     ] },
   C: { name:"札幌大本营", one:"直达札幌 5 连泊，温泉美食购物，只搬一次家", short:"札幌慢游",
     facts:[["换床 1 次",0],["体力 ★☆☆",0],["道内 ¥0.9万",0]],
     days:[
-      { d:"2/16", w:"周二", ic:"i-bus", t:"纹别 → 札幌，安营", s:"直行巴士 4h20，之后不再拖箱子",
+      { d:"2/16", w:"周二", ic:"i-bus", at:"spk", t:"纹别 → 札幌，安营", s:"直行巴士 4h20，之后不再拖箱子",
         li:["上午纹别自由：海豹乐园 / 加乘破冰船 / 流冰科学中心「极寒体验室」。","午后 <b>「流氷もんべつ号」纹别→札幌直行</b>约4小时20分、约¥5,500，预约制、乘车2个月前开订。","傍晚抵札幌，入住大通 / 札幌站前 <b>5 连泊</b>，包裹已在前台。"],
         tip:"预约制、座位有限，7 人一次订满。这趟车是 C 案的全部搬家成本——之后五天不再拖箱子。" },
-      { d:"2/17", w:"周三", ic:"i-shop", t:"札幌市内", s:"神宫雪参道 · 场外市场 · 大仓山",
+      { d:"2/17", w:"周三", ic:"i-shop", at:"spk", t:"札幌市内", s:"神宫雪参道 · 场外市场 · 大仓山",
         li:["北海道神宫雪参道 → 圆山 → 场外市场海鲜午餐。","大仓山跳台 + 奥运博物馆。","晚：成吉思汗烤肉。"] },
-      { d:"2/18", w:"周四", ic:"i-shop", t:"小樽一日", s:"运河 · 北一硝子 · 雪灯之路",
+      { d:"2/18", w:"周四", ic:"i-shop", at:"otr", t:"小樽一日", s:"运河 · 北一硝子 · 雪灯之路",
         li:["JR 快速约40分钟；运河、堺町通、北一硝子、LeTAO。","小樽「雪灯之路」往年多在2月上中旬，2027若延后撞上属加分。"] },
-      { d:"2/19", w:"周五", ic:"i-onsen", t:"温泉 或 滑雪", s:"定山溪日归 / 半日滑雪课",
+      { d:"2/19", w:"周五", ic:"i-onsen", at:"jzk", t:"温泉 或 滑雪", s:"定山溪日归 / 半日滑雪课",
         li:["① 定山溪温泉日归：直通巴士，雪见露天 + 午餐套票。","② 札幌国际 / 手稻滑雪场半日体验课，含教练与租板，零基础友好。","两项可以拆半天各玩一项，晚上薄野合流。"],
         tip:"这天是全程的减压阀：泡汤的和滑雪的各去半天，晚上薄野合流。想看流冰漫步的话，也可以全团把 2/17–2/18 换成知床两日、行李留在札幌酒店。" },
-      { d:"2/20", w:"周六", ic:"i-ice", t:"支笏湖冰涛祭 + 扫货", s:"蓝冰建筑群，狸小路打包",
+      { d:"2/20", w:"周六", ic:"i-ice", at:"sik", t:"支笏湖冰涛祭 + 扫货", s:"蓝冰建筑群，狸小路打包",
         li:["半日<b>支笏湖冰涛祭</b>：蓝冰建筑群，往年办至2月下旬。","回札幌狸小路 / 唐吉诃德 / 大丸扫货、打包。"] },
-      { d:"2/21", w:"周日", ic:"i-plane", all:true, t:"新千岁分手", s:"富余可逛机场哆啦A梦乐园",
+      { d:"2/21", w:"周日", ic:"i-plane", all:true, at:"cts", t:"新千岁分手", s:"富余可逛机场哆啦A梦乐园",
         li:["JR 快速 Airport 约37分钟。","时间富余可逛机场内哆啦A梦乐园、Royce巧克力世界。"] }
     ] }
 };
@@ -596,10 +627,118 @@ function renderRoutes() {
   $("#hint").innerHTML = "<b>" + plan + " " + SHORT[plan] + "</b>：" + HINT[plan];
 }
 
+/* ══ 地图 ═══════════════════════════════════════════ */
+/* 等距投影：x 按 44°N 的经度收缩，y 直接用纬度 */
+const PX = (lat, lon) => [ +((lon - 139.2) * 72).toFixed(1), +((45.7 - lat) * 100).toFixed(1) ];
+
+/* 海岸线，自宗谷岬顺时针 */
+const COAST = [[45.52,141.94],[45.35,142.40],[44.94,142.58],[44.58,142.97],[44.36,143.36],[44.13,143.65],
+  [44.11,143.90],[44.02,144.27],[43.92,144.67],[44.12,144.96],[44.35,145.33],[44.02,145.19],[43.66,145.13],[43.33,145.58],
+  [43.38,145.82],[43.25,145.55],[43.05,144.85],[42.98,144.38],[42.48,143.30],[41.93,143.25],[42.17,142.77],
+  [42.63,141.60],[42.31,140.97],[42.51,140.38],[41.77,140.73],[41.42,140.10],[41.87,140.13],[42.40,139.83],
+  [42.98,140.51],[43.36,140.42],[43.19,141.00],[43.28,141.32],[43.94,141.63],[44.36,141.70],[44.88,141.75],
+  [45.41,141.68]];
+
+const PLACES = {
+  mbe:{n:"纹别",  lat:44.356,lon:143.354,lx:-10,ly:-14,a:"end"},
+  abs:{n:"网走",  lat:44.021,lon:144.274,lx:-4, ly:-13,a:"middle"},
+  utr:{n:"宇登吕",lat:44.080,lon:145.000,lx:10, ly:-8, a:"start"},
+  akn:{n:"阿寒湖",lat:43.450,lon:144.100,lx:-11,ly:4,  a:"end"},
+  kus:{n:"钏路",  lat:42.985,lon:144.381,lx:6,  ly:16, a:"start"},
+  sbc:{n:"标茶",  lat:43.290,lon:144.600,lx:11, ly:5,  a:"start"},
+  soun:{n:"层云峡",lat:43.700,lon:143.000,lx:0, ly:-13,a:"middle"},
+  asa:{n:"旭川",  lat:43.770,lon:142.360,lx:-10,ly:0,  a:"end"},
+  spk:{n:"札幌",  lat:43.060,lon:141.350,lx:11, ly:-7, a:"start"},
+  otr:{n:"小樽",  lat:43.190,lon:141.000,lx:-11,ly:-5, a:"end"},
+  jzk:{n:"定山溪",lat:42.960,lon:141.160,lx:-11,ly:11, a:"end"},
+  sik:{n:"支笏湖",lat:42.750,lon:141.350,lx:-11,ly:17, a:"end"},
+  cts:{n:"新千岁",lat:42.790,lon:141.680,lx:11, ly:17, a:"start"}
+};
+
+/* 每条线的腿：C 案是以札幌为中心的放射状 */
+const LEGS = {
+  A: [["mbe","asa"],["asa","soun"],["asa","spk"],["spk","otr"],["spk","sik"],["sik","cts"]],
+  B: [["mbe","abs"],["abs","utr"],["utr","akn"],["akn","kus"],["kus","sbc"],["kus","spk"],["spk","cts"]],
+  C: [["mbe","spk"],["spk","otr"],["spk","jzk"],["spk","sik"],["sik","cts"]]
+};
+const USED = { A:["mbe","asa","soun","spk","otr","sik","cts"], B:["mbe","abs","utr","akn","kus","sbc","spk","cts"],
+  C:["mbe","spk","otr","jzk","sik","cts"] };
+/* 钏网线：网走—知床斜里—川汤—标茶—钏路 */
+const SENMO = [[44.021,144.274],[44.02,144.42],[43.92,144.66],[43.63,144.44],[43.38,144.44],[43.29,144.60],[43.10,144.44],[42.985,144.381]];
+
+/* 流冰装饰：鄂霍次克海一侧 */
+const FLOES = [[45.05,143.05],[44.75,143.62],[44.45,144.05],[44.62,142.85],[44.28,144.62],[44.90,143.75],[44.15,145.05],[45.30,142.70]];
+
+function poly(pts) { return pts.map((p, i) => (i ? "L" : "M") + PX(p[0], p[1]).join(" ")).join(" "); }
+
+function renderMap() {
+  const g = [];
+  const [w, h] = [512, 470];
+  g.push('<rect x="-14" y="-14" width="' + w + '" height="' + h + '" class="sea"/>');
+  FLOES.forEach((f, i) => {
+    const [x, y] = PX(f[0], f[1]); const r = 7 + (i % 3) * 4;
+    g.push('<path class="floe" d="M' + (x - r) + ' ' + y + 'l' + r + ' -' + (r * .45).toFixed(1) + 'l' + r + ' ' + (r * .45).toFixed(1) +
+      'l-' + (r * .9).toFixed(1) + ' ' + (r * .5).toFixed(1) + 'z" opacity=".7"/>');
+  });
+  const coastD = poly(COAST) + "Z";
+  g.push('<path d="' + coastD + '" fill="none" stroke="var(--floe)" stroke-width="9" stroke-linejoin="round" opacity=".55"/>');
+  g.push('<path class="land" d="' + coastD + '"/>');
+
+  if (plan === "B") {
+    g.push('<path class="rail" d="' + poly(SENMO) + '"/>');
+    const [tx, ty] = PX(43.62, 144.95);
+    g.push('<text class="tag" x="' + tx + '" y="' + ty + '">钏网线</text>');
+  }
+
+  LEGS[plan].forEach((l) => {
+    const [a, b] = [PLACES[l[0]], PLACES[l[1]]];
+    g.push('<path class="leg" d="M' + PX(a.lat, a.lon).join(" ") + "L" + PX(b.lat, b.lon).join(" ") + '"/>');
+  });
+
+  /* 2/15 的那班飞机：从画面左下角（东京方向）飞进纹别 */
+  const [mx, my] = PX(PLACES.mbe.lat, PLACES.mbe.lon);
+  g.push('<path class="air" d="M-8 372 Q40 150 ' + mx + ' ' + my + '"/>');
+  g.push('<text class="tag" x="-6" y="392">← 羽田 10:35 → 纹别 12:20</text>');
+
+  USED[plan].forEach((k) => {
+    const pl = PLACES[k], [x, y] = PX(pl.lat, pl.lon);
+    g.push('<g class="stop" data-at="' + k + '" tabindex="0" role="button" aria-label="' + pl.n + '">' +
+      '<circle cx="' + x + '" cy="' + y + '" r="6"/>' +
+      '<text x="' + (x + pl.lx) + '" y="' + (y + pl.ly) + '" text-anchor="' + pl.a + '">' + pl.n + '</text></g>');
+  });
+
+  $("#geo").innerHTML = g.join("");
+  document.querySelectorAll("#geo .stop").forEach((el) => {
+    const go = () => jumpTo(el.dataset.at);
+    el.addEventListener("click", go);
+    el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+  });
+
+  $("#mapcap").innerHTML = '<i></i><b>' + plan + " " + SHORT[plan] + ' 的走法</b>' +
+    '<i class="air"></i><b>2/15 唯一一班飞机</b>' +
+    (plan === "B" ? '<i class="rail"></i><b>钏网线（网走→钏路全线约3小时22分，我们坐最北50分钟）</b>' : '') +
+    '<span>点站点跳到那天</span>';
+  syncMap();
+}
+
+/* 地图 ↔ 时间轴 */
+function jumpTo(at) {
+  const d = document.querySelector('.tl details[data-at="' + at + '"]');
+  if (!d) return;
+  d.open = true;
+  d.scrollIntoView({ behavior: "smooth", block: "center" });
+  syncMap();
+}
+function syncMap() {
+  const open = [...document.querySelectorAll(".tl details[open]")].map((d) => d.dataset.at);
+  document.querySelectorAll("#geo .stop").forEach((el) =>
+    el.classList.toggle("on", open.indexOf(el.dataset.at) > -1));
+}
+
 /* ══ 时间轴 ═════════════════════════════════════════ */
 function dayRow(x, tagText, isAll) {
   const li = x.li.map((s) => "<li>" + s + "</li>").join("");
-  return '<details><summary>' +
+  return '<details' + (x.at ? ' data-at="' + x.at + '"' : '') + '><summary>' +
     '<span class="date">' + x.d + '<br><span style="font-size:11px;color:var(--ink-3)">' + x.w.replace("周", "") + '</span></span>' +
     icon(x.ic) +
     '<span class="what"><b>' + x.t + '</b><span>' + x.s + '</span></span>' +
@@ -612,6 +751,7 @@ function renderDays() {
   const rows = SHARED.map((x) => dayRow(x, x.only ? "武汉 2 人" : x.lock ? "唯一一班机" : "", !!x.only || !!x.lock))
     .concat(PLANS[plan].days.map((x) => dayRow(x, "", false)));
   $("#tl").innerHTML = rows.join("");
+  document.querySelectorAll(".tl details").forEach((d) => d.addEventListener("toggle", syncMap));
 }
 
 /* ══ 钱 ═════════════════════════════════════════════ */
@@ -730,7 +870,7 @@ function renderGear() {
 }
 
 /* ══ 组装 ═══════════════════════════════════════════ */
-function renderAll() { renderChips(); renderPay(); renderRoutes(); renderDays(); renderMoney(); renderFly(); }
+function renderAll() { renderChips(); renderPay(); renderRoutes(); renderDays(); renderMap(); renderMoney(); renderFly(); }
 
 (function countdown() {
   const to = (s) => Math.max(0, Math.ceil((new Date(s) - NOW) / 864e5));
