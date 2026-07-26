@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2027.2.11–2.21 · WF冬 × 纹别流冰 × 北海道 — 7人分头行动</title>
-<meta name="description" content="2027.2.11–2.21 幕张WF冬 × 纹别流冰破冰船 × 北海道，7人（北京3/武汉2/杭州2）分头行动：三组各选路线、按2+2+2+1房型算钱、预订清单可勾选。">
+<title>2027.2.11–2.21 · WF冬 × 纹别流冰 × 北海道 — 7人同行</title>
+<meta name="description" content="2027.2.11–2.21 幕张WF冬 × 纹别流冰破冰船 × 北海道，7人（北京3/武汉2/杭州2）全程同行：三条线选一条、按2+2+2+1房型算钱、预订清单可勾选。">
 <meta name="color-scheme" content="light dark">
 <style>
 *, *::before, *::after { box-sizing: border-box; }
@@ -283,7 +283,7 @@ footer details.fold { margin-top: 0; }
   <div class="wrap">
     <p class="eyebrow">2027.02.11 – 02.21 · 7人 · 北京3 武汉2 杭州2</p>
     <h1>幕张 WF 冬<br>纹别流冰 · 北海道</h1>
-    <p class="one">三组分头行动，只在四个日子聚齐。挑路线、算钱、订票倒排都在这一页。</p>
+    <p class="one">7 个人全程一起走，三条线里选一条。挑路线、算钱、订票倒排都在这一页。</p>
     <div class="when">
       <span><b class="cnt" id="cd-wf">—</b> 天后 WF 开幕</span>
       <span><b class="cnt" id="cd-dealer">—</b> 天后 Dealer 募集</span>
@@ -293,16 +293,16 @@ footer details.fold { margin-top: 0; }
 
 <div class="bar">
   <div class="wrap">
-    <span class="lab">分工</span>
-    <div class="grp" id="grp"></div>
+    <span class="lab">全团走</span>
+    <div class="grp" id="route-chips"></div>
   </div>
 </div>
 
 <section id="pick">
   <div class="wrap">
     <p class="eyebrow">第一步</p>
-    <h2>这一组走哪条线</h2>
-    <p class="lede">点上面的小组，再点下面的路线。三组可以各走一版，不用凑在一起。</p>
+    <h2>七个人走哪条线</h2>
+    <p class="lede">全程不分家，所以三条线只选一条。选哪条，取决于团里体力最弱的那位跟不跟得上。</p>
     <div class="routes" id="routes"></div>
     <p class="hintline" id="hint">—</p>
   </div>
@@ -312,7 +312,7 @@ footer details.fold { margin-top: 0; }
   <div class="wrap">
     <p class="eyebrow">第二步</p>
     <h2 id="days-h">行程</h2>
-    <p class="lede">点任意一天展开细节。<b>红标「全团」</b>的四天是必须聚齐的，其余各组自己走。</p>
+    <p class="lede">点任意一天展开细节。除了 2/10 武汉 2 人先到杭州，其余每天 7 个人都在一起。</p>
     <div class="tl" id="tl"></div>
   </div>
 </section>
@@ -323,9 +323,10 @@ footer details.fold { margin-top: 0; }
     <h2>多少钱</h2>
     <p class="lede">住宿按 2+2+2+1 开房，同住算半间、独住算单间全额，差价不摊给别人。</p>
     <div class="money">
-      <div class="big"><div class="l">本组人均</div><div class="v" id="v-per">—<small> 元</small></div><div class="sub" id="s-per">—</div></div>
-      <div class="big"><div class="l">7人合计 · 按当前分工</div><div class="v" id="v-team">—<small> 元</small></div><div class="sub" id="s-team">—</div></div>
+      <div class="big"><div class="l">人均 · <span id="pay-name">北京</span>口径</div><div class="v" id="v-per">—<small> 元</small></div><div class="sub" id="s-per">—</div></div>
+      <div class="big"><div class="l">7 人合计</div><div class="v" id="v-team">—<small> 元</small></div><div class="sub" id="s-team">—</div></div>
     </div>
+    <div class="knobs" style="margin-top:14px"><span class="lab" style="font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);align-self:center">机票口径</span><div class="grp" id="pay"></div></div>
     <div class="knobs">
       <div class="knob"><label for="f-tier">档位</label>
         <select id="f-tier">
@@ -353,9 +354,9 @@ footer details.fold { margin-top: 0; }
   <div class="wrap">
     <p class="eyebrow">进出</p>
     <h2>怎么飞</h2>
-    <p class="lede">武汉没有直飞日本的航班，所以武汉 2 人提前一天并到杭州，4 人同进同出。</p>
+    <p class="lede">武汉没有直飞日本的航班，所以武汉 2 人提前一天并到杭州，4 人同进同出；北京 3 人单独一路，2/11 傍晚在东京酒店会齐。</p>
     <div class="cards" id="fly-cards"></div>
-    <p class="hintline">出票顺序：先出 <b>2/15 羽田→纹别 ×7</b>（一天一班、唯一无替代），10 月下旬冬春航季班期出来后再出国际段，回程直飞没确认前别买不可退的接驳段。</p>
+    <p class="hintline">出票顺序：先出 <b>2/15 羽田→纹别 ×7</b>（一天一班、唯一无替代，7 张开同一预订号），10 月下旬冬春航季班期出来后再出国际段，回程直飞没确认前别买不可退的接驳段。</p>
   </div>
 </section>
 
@@ -381,13 +382,13 @@ footer details.fold { margin-top: 0; }
         <p>预防：现在就出票，7 张尽量开同一预订号，遇取消能一起改。</p></div></details>
       <details><summary>国际段又被减班</summary><div class="ans">
         <p>2025年11月起中方航司大面积取消日本航线，2026年5–6月中日航班量同比仍腰斩，三大航免费退改延至 2026/10/24 航季。</p>
-        <p>所以「先买、盯着、再换」比观望划算；优先买 ANA/JAL 实际承运的航班。北京组回程若 2/21 没有直飞，退回 新千岁→羽田→北京，接不上就东京住一晚 2/22 回。</p></div></details>
+        <p>所以「先买、盯着、再换」比观望划算；优先买 ANA/JAL 实际承运的航班。北京 3 人回程若 2/21 没有直飞，退回 新千岁→羽田→北京，接不上就东京住一晚 2/22 回。</p></div></details>
       <details><summary>流冰没接岸</summary><div class="ans">
         <p>2月中旬概率最高但不是100%。无冰时ガリンコ号照常出海改走观光航线，介意可按官网规则改退。出发前一周看海上保安厅「海冰速报」。</p></div></details>
       <details><summary>暴雪运休</summary><div class="ans">
-        <p>石北线、钏网线冬季运休不罕见，B 案最敏感。每晚看 JR 北海道运行情报，关键衔接别买当日最后一班。2026年冬 WF 当天东京就下过大雪。</p></div></details>
+        <p>石北线、钏网线冬季运休不罕见，B 案最敏感——7 个人一起改道比 2 个人难得多，这是选线时要算进去的。每晚看 JR 北海道运行情报，关键衔接别买当日最后一班。2026年冬 WF 当天东京就下过大雪。</p></div></details>
       <details><summary>能不能自己开车</summary><div class="ans">
-        <p>中国大陆驾照（含公证/翻译件）在日本不能合法驾驶，所以三条线全按公共交通设计。若某组有日本或日内瓦公约缔约地驾照，那组可自驾走 B 案，雪路风险自担。</p></div></details>
+        <p>中国大陆驾照（含公证/翻译件）在日本不能合法驾驶，所以三条线全按公共交通设计。若 7 人里有日本或日内瓦公约缔约地驾照持有者，B 案可改自驾（7 人需两辆车、雪路风险自担，要提前订雪胎车）。</p></div></details>
     </div>
   </div>
 </section>
@@ -396,7 +397,7 @@ footer details.fold { margin-top: 0; }
   <div class="wrap">
     <p class="eyebrow">出门前</p>
     <h2>带什么</h2>
-    <p class="lede">点一下划掉。分头行动的话，备用件各组自己带一份。</p>
+    <p class="lede">点一下划掉。7 人同行，备用件（暖宝宝、冰爪、充电宝）指定一个人统一带就行。</p>
     <div class="chips" id="gear"></div>
   </div>
 </section>
@@ -444,9 +445,9 @@ const SHARED = [
   { d:"2/14", w:"周日", ic:"i-ticket", all:true, t:"WF 第 2 天 + 寄行李", s:"散场后撤展，大件宅急便寄札幌",
     li:["17:00 散场后撤展。","<b>当晚关键动作</b>：战利品、展品、多余行李用ヤマト宅急便寄往札幌末段酒店（约2天到）。寄前电话确认酒店可代收，写明入住日与姓名。","只留 2–3 天轻装行李飞纹别。"],
     tip:"2026年冬 WF 当天东京下过大雪造成混乱。今晚收拾停当，给明早通勤留余量。" },
-  { d:"2/15", w:"周一", ic:"i-ship", all:true, t:"飞纹别 · 日落破冰航", s:"ANA375 一班机 + ガリンコ号III",
+  { d:"2/15", w:"周一", ic:"i-ship", lock:true, t:"飞纹别 · 日落破冰航", s:"ANA375 一班机 + ガリンコ号III",
     li:["08:00前后去羽田（东京站→羽田约40–50分钟）。","<b>ANA375 羽田→鄂霍次克纹别</b>：每日1班，上午出发午后落地（近年约10:30起飞、12点台到达）。","机场到市区约15–20分钟，行李放酒店后去码头（机场到码头约10分钟）。","<b>15:00 或 16:00 前后日落班 ガリンコ号III「IMERU」</b>：约60分钟（视冰况可延30分），成人约¥4,000–5,000，官网预约。日落班流冰染橙最出片。","富余可看海豹乐园、登冰海展望塔 Okhotsk Tower。","晚餐毛蟹会席或流冰季海鲜；市区2月有「冰灯之街」冰烛点灯。","宿纹别：Hotel Okhotsk Palace / 纹别Prince / 纹别Central。"],
-    tip:"<b>唯一必须同机的一天</b>——羽田⇄纹别一天只有这一班。从 2/16 起各组分头。" }
+    tip:"羽田⇄纹别一天只有 ANA375 这一班，7 张票尽量开在同一预订号里，遇取消能一起改。" }
 ];
 
 const PLANS = {
@@ -455,7 +456,7 @@ const PLANS = {
     days:[
       { d:"2/16", w:"周二", ic:"i-ice", t:"纹别 → 层云峡温泉", s:"巴士 3h + 冰瀑祭夜场点灯",
         li:["上午纹别自由：加乘上午班破冰船，或海豹乐园 / 流冰科学中心。","「特急オホーツク号」纹别→旭川约3小时、约¥3,000+，乘车2个月前可预约。","道北巴士 旭川→层云峡约1小时50分、约¥2,100。","宿层云峡温泉（朝阳亭、层云阁、Hotel大雪，含二食）。","晚：<b>层云峡冰瀑祭夜场点灯</b>，会场就在温泉街旁，周末常有烟花。"],
-        tip:"巴士按本组 2–4 人订就行，不必和别组同一班车。衔接不顺可改宿旭川、次日再进层云峡。" },
+        tip:"7 张巴士座位一次订满，别分两班车。衔接不顺可改宿旭川、次日再进层云峡一日游。" },
       { d:"2/17", w:"周三", ic:"i-mtn", t:"银河·流星瀑布冰瀑", s:"黑岳缆车，傍晚旭川拉面",
         li:["上午银河·流星瀑布冰瀑近景、黑岳缆车（视风况）。","午后巴士回旭川。","傍晚旭川拉面村，或成吉思汗「大黑屋」。","宿旭川站前。"] },
       { d:"2/18", w:"周四", ic:"i-bird", t:"旭山动物园 → 札幌", s:"企鹅散步 11:00 / 14:30",
@@ -476,14 +477,14 @@ const PLANS = {
         tip:"已坐过ガリンコ号，网走「おーろら」可跳过；想对比船型的话次日清晨加乘一班（约¥4,000–5,000）。" },
       { d:"2/17", w:"周三", ic:"i-ice", t:"流氷物語号 → 流冰漫步", s:"穿干式服踩上流冰，1.5h",
         li:["上午 JR钏网线<b>「流氷物語号」</b>网走→知床斜里约50分钟，车窗紧贴流冰海岸线（冬季限定，2027运行日待官宣）。","斜里巴士→宇登吕温泉约50分钟、约¥1,700。","<b>13:00 或 15:30 场 流氷ウォーク®</b>：约1.5小时、约¥6,000–7,000，含宇登吕地区酒店接送。2月中旬冰面最稳，正是官方推荐窗口。","宿宇登吕温泉（北こぶし知床、知床第一、KIKI知床）。"],
-        tip:"预约一开放就下单。分头行动后只需给本组 2–4 人排同一场次，比 7 人挤一场容易得多。干式服内别穿厚羽绒。" },
+        tip:"<b>7 人要报同一场次</b>，预约一开放就下单，否则会被拆到两场、接送车也分批。干式服内别穿厚羽绒，内搭轻便保暖。" },
       { d:"2/18", w:"周四", ic:"i-onsen", t:"宇登吕 → 阿寒湖温泉", s:"冬季限定巴士 3h，冰上烟花",
-        li:["早场可补一次流冰漫步，或 Furepe 瀑布雪鞋行。","午后 <b>东北海道 Express Bus（冬季限定·预约制）</b> 宇登吕→川汤/摩周→阿寒湖温泉约3–3.5小时，冬季时刻通常秋季公布。","停开则改「斜里→摩周 JR + 阿寒巴士」，或本组几人拼一辆包车（人少反而好凑）。","夜：阿寒湖冰上村「冬華美」冰上烟花 + 爱努 Kotan。","宿阿寒湖温泉（鹤雅系）。"] },
+        li:["早场可补一次流冰漫步，或 Furepe 瀑布雪鞋行。","午后 <b>东北海道 Express Bus（冬季限定·预约制）</b> 宇登吕→川汤/摩周→阿寒湖温泉约3–3.5小时，冬季时刻通常秋季公布。","停开则改「斜里→摩周 JR + 阿寒巴士」，或 7 人拼两辆包车。","夜：阿寒湖冰上村「冬華美」冰上烟花 + 爱努 Kotan。","宿阿寒湖温泉（鹤雅系）。"] },
       { d:"2/19", w:"周五", ic:"i-sun", t:"阿寒湖 → 钏路", s:"冰上垂钓，币舞桥落日",
         li:["上午阿寒湖冰上垂钓西太公鱼，现炸天妇罗。","午后阿寒巴士→钏路约2小时、约¥2,800。","16:40前后到<b>币舞桥</b>看「世界三大夕阳」之一的冬季落日。","炉端烧晚餐，宿钏路。"] },
       { d:"2/20", w:"周六", ic:"i-bird", t:"SL蒸汽 / 丹顶鹤 → 札幌", s:"二选一，午后特急大空",
         li:["① <b>SL冬之湿原号</b> 钏路⇄标茶，全车指定席、单程约¥3,000，<b>乘车日1个月前发售、开票即秒</b>（约1/20开抢）。","② 阿寒国际鹤中心 / 鹤见台看<b>丹顶鹤求偶之舞</b>，2月正是季节。","午后 JR特急大空 钏路→札幌约4小时20分、约¥10,000。","宿札幌站前，取包裹。"],
-        tip:"只给本组抢 2–4 张比抢 7 张现实得多。没抢到的当天去看鹤，傍晚钏路站合流。" },
+        tip:"7 张 SL 指定席同时抢难度不小。分两三个人各抢、抢到多少算多少，没抢到的去看丹顶鹤，傍晚钏路站合流。" },
       { d:"2/21", w:"周日", ic:"i-plane", all:true, t:"新千岁分手", s:"落地札幌才隔一夜，留缓冲",
         li:["札幌 → 新千岁约37分钟。","本案 2/20 夜才到札幌，回程务必留足缓冲：JR 因雪停运就改高速巴士（约1小时40分）。"] }
     ] },
@@ -492,14 +493,14 @@ const PLANS = {
     days:[
       { d:"2/16", w:"周二", ic:"i-bus", t:"纹别 → 札幌，安营", s:"直行巴士 4h20，之后不再拖箱子",
         li:["上午纹别自由：海豹乐园 / 加乘破冰船 / 流冰科学中心「极寒体验室」。","午后 <b>「流氷もんべつ号」纹别→札幌直行</b>约4小时20分、约¥5,500，预约制、乘车2个月前开订。","傍晚抵札幌，入住大通 / 札幌站前 <b>5 连泊</b>，包裹已在前台。"],
-        tip:"这趟车是 C 案的全部搬家成本——之后五天不再拖箱子，也不必跟着别组的节奏走。" },
+        tip:"预约制、座位有限，7 人一次订满。这趟车是 C 案的全部搬家成本——之后五天不再拖箱子。" },
       { d:"2/17", w:"周三", ic:"i-shop", t:"札幌市内", s:"神宫雪参道 · 场外市场 · 大仓山",
         li:["北海道神宫雪参道 → 圆山 → 场外市场海鲜午餐。","大仓山跳台 + 奥运博物馆。","晚：成吉思汗烤肉。"] },
       { d:"2/18", w:"周四", ic:"i-shop", t:"小樽一日", s:"运河 · 北一硝子 · 雪灯之路",
         li:["JR 快速约40分钟；运河、堺町通、北一硝子、LeTAO。","小樽「雪灯之路」往年多在2月上中旬，2027若延后撞上属加分。"] },
       { d:"2/19", w:"周五", ic:"i-onsen", t:"温泉 或 滑雪", s:"定山溪日归 / 半日滑雪课",
-        li:["① 定山溪温泉日归：直通巴士，雪见露天 + 午餐套票。","② 札幌国际 / 手稻滑雪场半日体验课，含教练与租板，零基础友好。","这天本来就写成分头玩，晚上薄野合流。"],
-        tip:"想加流冰漫步的人也可以把 2/17–2/18 换成「知床两日小分队」，行李留札幌酒店。" },
+        li:["① 定山溪温泉日归：直通巴士，雪见露天 + 午餐套票。","② 札幌国际 / 手稻滑雪场半日体验课，含教练与租板，零基础友好。","两项可以拆半天各玩一项，晚上薄野合流。"],
+        tip:"这天是全程的减压阀：泡汤的和滑雪的各去半天，晚上薄野合流。想看流冰漫步的话，也可以全团把 2/17–2/18 换成知床两日、行李留在札幌酒店。" },
       { d:"2/20", w:"周六", ic:"i-ice", t:"支笏湖冰涛祭 + 扫货", s:"蓝冰建筑群，狸小路打包",
         li:["半日<b>支笏湖冰涛祭</b>：蓝冰建筑群，往年办至2月下旬。","回札幌狸小路 / 唐吉诃德 / 大丸扫货、打包。"] },
       { d:"2/21", w:"周日", ic:"i-plane", all:true, t:"新千岁分手", s:"富余可逛机场哆啦A梦乐园",
@@ -532,58 +533,66 @@ const COST = {
 const TASKS = [
   { w:"现在 · 本周", t:"出 ANA375 羽田→纹别 ×7", em:"唯一必须同机、也唯一无替代的一段，一天一班先到先得。尽量开同一预订号。", from:"2026-07-01", to:"2026-08-31" },
   { w:"8/12–8/24", t:"WF2027[冬] Dealer 申请", em:"要摊位就这个窗口，错过没有补录。", from:"2026-08-12", to:"2026-08-24" },
-  { w:"8月", t:"圈定各段住宿比价", em:"东京4晚、纹别1晚、末段5晚（按各组方案）。", from:"2026-08-01", to:"2026-09-15" },
+  { w:"8月", t:"圈定各段住宿比价", em:"东京4晚、纹别1晚、末段5晚：3 间双人房 + 1 间单人房。", from:"2026-08-01", to:"2026-09-15" },
   { w:"9–10月", t:"纹别住宿下订", em:"含蟹会席方案要早订；好在2/15是周一，比周末好订。", from:"2026-09-01", to:"2026-10-31" },
   { w:"10月下旬", t:"复核冬春航季中日班期", em:"航季10/25起，届时才知道 2/11 进、2/21 出各城有哪些班。这步定了再出国际段。", from:"2026-10-20", to:"2026-11-15" },
-  { w:"10–11月", t:"出国际段机票", em:"各组按自己方便的时段出，优先 ANA/JAL 实际承运；北京回程先核 2/21 有无直飞。", from:"2026-10-25", to:"2026-11-30" },
-  { w:"11–12月", t:"末段住宿与限定项目", em:"层云峡/宇登吕/阿寒湖住宿；流冰walk 开放即订；东北海道 Express Bus 时刻公布后锁定。", from:"2026-11-01", to:"2026-12-31" },
-  { w:"乘车前2个月", t:"预约制巴士开订", em:"「流氷もんべつ号」「特急オホーツク号」——2/16 乘车即 12/16 前后开订。", from:"2026-12-10", to:"2027-01-10" },
-  { w:"12月", t:"ガリンコ号 2/15 日落班", em:"官网开放2027季后立即锁定同一班次 ×7。", from:"2026-12-01", to:"2027-01-31" },
-  { w:"1月上旬", t:"全员签证办妥", em:"各组材料一起递、留缓冲；武汉2人注意领区归属。", from:"2027-01-01", to:"2027-01-25" },
-  { w:"约 1/20", t:"SL冬之湿原号指定席", em:"2/20 的票约 1/20 开售，开票即秒，走 B 案的组自己抢。", from:"2027-01-18", to:"2027-01-22" },
+  { w:"10–11月", t:"出国际段机票", em:"三地分别出票但尽量对齐抵达时段，优先 ANA/JAL 实际承运；北京回程先核 2/21 有无直飞。", from:"2026-10-25", to:"2026-11-30" },
+  { w:"11–12月", t:"末段住宿与限定项目", em:"层云峡/宇登吕/阿寒湖住宿；流冰walk 开放即订（7 人同场）；东北海道 Express Bus 时刻公布后锁定。", from:"2026-11-01", to:"2026-12-31" },
+  { w:"乘车前2个月", t:"预约制巴士开订", em:"「流氷もんべつ号」「特急オホーツク号」——2/16 乘车即 12/16 前后开订，7 座一次订满。", from:"2026-12-10", to:"2027-01-10" },
+  { w:"12月", t:"ガリンコ号 2/15 日落班", em:"官网开放2027季后立即锁定 2/15 日落班 ×7。", from:"2026-12-01", to:"2027-01-31" },
+  { w:"1月上旬", t:"全员签证办妥", em:"7 人材料一起递、留缓冲；武汉2人注意领区归属。", from:"2027-01-01", to:"2027-01-25" },
+  { w:"约 1/20", t:"SL冬之湿原号指定席", em:"2/20 的票约 1/20 开售，开票即秒；7 张分两三个人各抢，抢到多少算多少（只有 B 案要）。", from:"2027-01-18", to:"2027-01-22" },
   { w:"1月", t:"确认札幌酒店代收包裹", em:"电话确认可代收，记下入住日与姓名写法。", from:"2027-01-15", to:"2027-02-05" },
   { w:"出发前1周", t:"三查：航班 / JR / 海冰速报", em:"海上保安厅「海冰速报」看流冰接岸位置，必要时把2/16上午班当补拍机会。", from:"2027-02-04", to:"2027-02-11" }
 ];
 
 const GEAR = ["防滑冰爪","防水雪地靴","速干内层 ×3","抓绒 / 薄羽绒","防风外壳","暖宝宝 ×20","充电宝","墨镜","护照 + 复印件","现金日元","相机备用电池","便携三脚架","口罩 / 润唇膏","转换插头","大号收纳袋","流冰walk 用轻便内搭"];
 
-/* ══ 状态 ═══════════════════════════════════════════ */
+/* ══ 状态：7 人一条线，city 只决定机票口径 ══════════ */
+let plan = "A";
 let city = "bj";
-const assign = { bj: "A", wh: "A", hz: "A" };
-const cur = () => assign[city];
 const $ = (s) => document.querySelector(s);
 const fmt = (n) => n.toLocaleString("en-US");
 const icon = (id) => '<svg class="ic"><use href="#' + id + '"/></svg>';
 
-/* ══ 分工条 ═════════════════════════════════════════ */
-function renderGrp() {
-  $("#grp").innerHTML = Object.keys(CITY).map((k) =>
+/* ══ 顶部路线条 ═════════════════════════════════════ */
+function renderChips() {
+  $("#route-chips").innerHTML = ["A", "B", "C"].map((k) =>
+    '<button data-p="' + k + '" aria-current="' + (k === plan) + '"><b>' + k + '</b> ' + SHORT[k] + '</button>').join("");
+  document.querySelectorAll("#route-chips button").forEach((b) =>
+    b.addEventListener("click", () => { plan = b.dataset.p; renderAll(); }));
+}
+
+/* ══ 机票口径切换 ═══════════════════════════════════ */
+function renderPay() {
+  $("#pay").innerHTML = Object.keys(CITY).map((k) =>
     '<button data-g="' + k + '" aria-current="' + (k === city) + '">' +
-    CITY[k].name.replace("组", "") + ' ' + CITY[k].pax + '人 <b>' + assign[k] + '</b></button>').join("");
-  document.querySelectorAll("#grp button").forEach((b) =>
-    b.addEventListener("click", () => pickCity(b.dataset.g)));
+    CITY[k].name.replace("组", "") + ' ' + CITY[k].pax + '人</button>').join("");
+  document.querySelectorAll("#pay button").forEach((b) =>
+    b.addEventListener("click", () => { city = b.dataset.g; renderAll(); }));
+  $("#pay-name").textContent = CITY[city].name.replace("组", "");
 }
 
 /* ══ 路线卡 ═════════════════════════════════════════ */
 function renderRoutes() {
   $("#routes").innerHTML = ["A", "B", "C"].map((k) => {
     const p = PLANS[k];
-    return '<button class="route" data-p="' + k + '" aria-pressed="' + (k === cur()) + '">' +
+    return '<button class="route" data-p="' + k + '" aria-pressed="' + (k === plan) + '">' +
       SCENE[k] +
       '<div class="meat"><h3><span class="mark">' + k + '</span>' + p.name + '</h3>' +
       '<p>' + p.one + '</p>' +
       '<div class="facts">' + p.facts.map((f) => '<span class="' + (f[1] ? "hot" : "") + '">' + f[0] + '</span>').join("") + '</div>' +
-      '<div class="picked">' + CITY[city].name + '走这条</div></div></button>';
+      '<div class="picked">7 人走这条</div></div></button>';
   }).join("");
   document.querySelectorAll(".route").forEach((b) =>
-    b.addEventListener("click", () => { assign[city] = b.dataset.p; renderAll(); }));
+    b.addEventListener("click", () => { plan = b.dataset.p; renderAll(); }));
 
-  const set = Object.keys(assign).map((k) => assign[k]);
-  const same = set.every((v) => v === set[0]);
-  $("#hint").innerHTML = same
-    ? "三组现在都走 <b>" + set[0] + " " + SHORT[set[0]] + "</b>。想省事的配法是：体力好爱拍的那组走 B，其余走 C——C 组在札幌不动窝，B 组去道东折腾，2/20 夜自然合流。"
-    : "当前分工：" + Object.keys(CITY).map((k) => CITY[k].name + " <b>" + assign[k] + " " + SHORT[assign[k]] + "</b>").join("、") +
-      "。共通锚点只有 2/11、2/13–14、2/15、2/21 四天，其余各走各的。";
+  const HINT = {
+    A: "均衡的一版：换 4 次床、每天都有明确的看点，7 个人一起也不算折腾。想第一次冬天来北海道就选它。",
+    B: "最震撼也最吃力：6 次换床，流冰漫步、流氷物語号、Express Bus、SL 四项都是冬季限定名额，<b>要一次凑齐 7 份</b>。团里只要有一位跟不动，压力会落到所有人身上。",
+    C: "7 人同行最稳的一版：札幌 5 连泊只搬一次家，白天想拆成两拨各玩各的也随时可以，晚上回同一家酒店。"
+  };
+  $("#hint").innerHTML = "<b>" + plan + " " + SHORT[plan] + "</b>：" + HINT[plan];
 }
 
 /* ══ 时间轴 ═════════════════════════════════════════ */
@@ -593,16 +602,14 @@ function dayRow(x, tagText, isAll) {
     '<span class="date">' + x.d + '<br><span style="font-size:11px;color:var(--ink-3)">' + x.w.replace("周", "") + '</span></span>' +
     icon(x.ic) +
     '<span class="what"><b>' + x.t + '</b><span>' + x.s + '</span></span>' +
-    '<span class="flag' + (isAll ? " all" : "") + '">' + tagText + '</span>' +
+    (tagText ? '<span class="flag' + (isAll ? " all" : "") + '">' + tagText + '</span>' : '<span></span>') +
     '</summary><div class="detail"><ul>' + li + '</ul>' +
     (x.tip ? '<div class="tip">' + x.tip + '</div>' : '') + '</div></details>';
 }
 function renderDays() {
-  const plan = cur();
-  $("#days-h").textContent = CITY[city].name + "的 11 天 · " + plan + " " + SHORT[plan];
-  const shared = SHARED.filter((x) => !x.only || x.only === city);
-  const rows = shared.map((x) => dayRow(x, x.all ? "全团" : "本组", !!x.all))
-    .concat(PLANS[plan].days.map((x) => dayRow(x, x.all ? "全团" : plan, !!x.all)));
+  $("#days-h").textContent = "7 个人的 11 天 · " + plan + " " + SHORT[plan];
+  const rows = SHARED.map((x) => dayRow(x, x.only ? "武汉 2 人" : x.lock ? "唯一一班机" : "", !!x.only || !!x.lock))
+    .concat(PLANS[plan].days.map((x) => dayRow(x, "", false)));
   $("#tl").innerHTML = rows.join("");
 }
 
@@ -633,16 +640,16 @@ function totals(planKey, cityKey, occ) {
 }
 function teamTotal() {
   return Object.keys(ROOMS).reduce((s, k) =>
-    s + ROOMS[k].share * totals(assign[k], k, "share").per
-      + ROOMS[k].solo * totals(assign[k], k, "solo").per, 0);
+    s + ROOMS[k].share * totals(plan, k, "share").per
+      + ROOMS[k].solo * totals(plan, k, "solo").per, 0);
 }
 function renderMoney() {
-  const plan = cur(), occ = $("#f-room").value, T = totals(plan, city, occ);
+  const occ = $("#f-room").value, T = totals(plan, city, occ);
   $("#v-per").innerHTML = fmt(T.per) + '<small> 元</small>';
   $("#s-per").textContent = (occ === "solo" ? "一人一间" : "与人同住") + " · " + plan + " " + SHORT[plan] +
     " · 含机票 " + fmt(T.L.air) + " 元";
   $("#v-team").innerHTML = fmt(teamTotal()) + '<small> 元</small>';
-  $("#s-team").textContent = "6 位同住 + 1 位独住（北京组 3 人 = 2+1）";
+  $("#s-team").textContent = "三地机票口径相加 · 6 位同住 + 1 位独住（北京 3 人 = 2+1）";
 
   $("#bill").innerHTML = T.L.jpy.map((r) =>
     '<tr><td>' + r[0] + '<div class="s">' + r[2] + '</div></td><td class="n">¥' + fmt(r[1]) +
@@ -721,8 +728,7 @@ function renderGear() {
 }
 
 /* ══ 组装 ═══════════════════════════════════════════ */
-function pickCity(v) { city = v; renderAll(); }
-function renderAll() { renderGrp(); renderRoutes(); renderDays(); renderMoney(); renderFly(); }
+function renderAll() { renderChips(); renderPay(); renderRoutes(); renderDays(); renderMoney(); renderFly(); }
 
 (function countdown() {
   const to = (s) => Math.max(0, Math.ceil((new Date(s) - NOW) / 864e5));
