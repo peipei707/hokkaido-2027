@@ -89,7 +89,7 @@ svg { display: block; }
 .bar { position: sticky; top: 0; z-index: 30; background: var(--ground); border-bottom: 1px solid var(--line); }
 .bar .wrap { display: flex; align-items: center; gap: 10px; padding: 9px 18px; overflow-x: auto; }
 .bar .lab { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); flex: none; }
-.grp { display: flex; gap: 7px; }
+.grp { display: flex; gap: 7px; flex-wrap: wrap; }
 .grp button { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; cursor: pointer;
   background: var(--surface); border: 1px solid var(--line); border-radius: 100px; padding: 4px 12px; font-size: 13.5px; color: var(--ink-2); }
 .grp button b { font-family: var(--mono); font-size: 12px; color: var(--ice); }
@@ -385,9 +385,11 @@ footer details.fold { margin-top: 0; }
   <div class="wrap">
     <p class="eyebrow">进出</p>
     <h2>怎么飞</h2>
-    <p class="lede">武汉没有直飞日本的航班，所以武汉 2 人提前一天并到杭州，4 人同进同出；北京 3 人单独一路，2/11 傍晚在东京酒店会齐。</p>
+    <p class="lede">武汉没有直飞日本的航班（2026年4月起中方航司已把武汉的日本线全部取消），所以只有「并到哪一边」的选择。三种集合方式，点一下比价：</p>
+    <div class="knobs" style="margin-top:14px"><div class="grp" id="meet"></div></div>
+    <p class="hintline" id="meet-sum">—</p>
     <div class="cards" id="fly-cards"></div>
-    <p class="hintline">出票顺序：先出 <b>2/15 羽田→纹别 ×7</b>（一天一班、唯一无替代，7 张开同一预订号），10 月下旬冬春航季班期出来后再出国际段，回程直飞没确认前别买不可退的接驳段。</p>
+    <p class="hintline" id="ticket-hint">—</p>
   </div>
 </section>
 
@@ -463,10 +465,47 @@ const CITY = {
     tip: "和武汉组共 4 人同进同出，订房订车都按 4 人算。" }
 };
 
+/* 三种集合方式：谁跟谁一班进日本 */
+const MEET = {
+  a: { n:"两路进", tagline:"最省钱",
+    air:{bj:4200,wh:4850,hz:3800},
+    sum:"北京 3 人一路；武汉 2 人 2/10 到杭州，和杭州 2 人同班。<b>总价最低</b>，代价是进出分两路、东京才碰头。",
+    pre:{ d:"2/10", w:"周三", ic:"i-train", only:true, t:"武汉 2 人先到杭州", s:"高铁 4.5h 或 飞 1.5h，住一晚",
+      li:["武汉 → 杭州，高铁约4.5小时（G字车次多）或飞约1小时30分。","住杭州机场周边或市区，次日与杭州组同班。","北京 3 人今天照常上班，行李当晚打包。"],
+      tip:"不想多住一晚也可 2/11 清早武汉飞杭州，但要留足 3 小时中转（冬季华中易起雾）。" },
+    out:{ wh:"<b>2/10 先到杭州</b>（高铁约4.5h / 飞约1.5h），2/11 与杭州 2 人同班进东京。",
+          hz:"萧山 → 成田或羽田。ANA 现营运东京⇄杭州（近期约每周21班），三城里最稳的一段。" },
+    tip:{ wh:"口径含武汉⇄杭州往返约¥700 + 2/10 住一晚。别买「武汉出发」的联程——现在没有可靠的日本段承运。",
+          hz:"和武汉 2 人共 4 人同进同出，订房订车都按 4 人算。" } },
+  b: { n:"武汉并北京", tagline:"武汉多花约1,250",
+    air:{bj:4200,wh:6100,hz:3800},
+    sum:"武汉 2 人改去北京，和北京 3 人同一张 ANA 联程（含 <b>羽田→纹别</b> 那一段），衔接由航司保障；杭州 2 人仍走直飞。",
+    pre:{ d:"2/10", w:"周三", ic:"i-plane", only:true, t:"武汉 2 人先到北京", s:"飞约 2h10m，住一晚",
+      li:["武汉 → 北京，飞约2小时10分（往返参考 ¥1,400–2,000）。","住首都机场或大兴附近，次日与北京 3 人同班。","好处：这 5 个人能开在同一张 ANA 联程里，国际段延误时 <b>羽田→纹别</b> 的衔接由航司负责。"],
+      tip:"国内段和国际段要买在同一张联程票上才有衔接保障；分开买的话，务必前一晚到北京。" },
+    out:{ wh:"<b>2/10 先到北京</b>（飞约2h10m），2/11 与北京 3 人同班、同一张 ANA 联程。",
+          hz:"萧山 → 成田或羽田。ANA 现营运东京⇄杭州（近期约每周21班），三城里最稳的一段。" },
+    back:{ wh:"随北京 3 人 新千岁→羽田→北京（同一张联程），再北京→武汉 约2h10m；接不上就北京住一晚 2/22 回。" },
+    tip:{ wh:"口径含武汉⇄北京往返约¥1,500 + 2/10 住一晚。国内段和 ANA 联程是两张票，所以务必 2/10 到北京、别赶当天。",
+          hz:"杭州 2 人这版单独走直飞，是全团最便宜的一段。" } },
+  c: { n:"全员北京同机", tagline:"最省心，杭州多花约2,200",
+    air:{bj:4200,wh:6100,hz:6000},
+    sum:"武汉、杭州 4 人 2/10 都到北京，2/11 <b>7 个人同一班 PEK→HND</b>。一张预订号从头管到尾：北京→羽田 / 羽田→纹别 / 新千岁→羽田→北京，全程 ANA 承运，任一段延误由航司负责后续衔接。",
+    pre:{ d:"2/10", w:"周三", ic:"i-plane", only:true, t:"武汉 · 杭州 4 人到北京", s:"各飞约 2h，住一晚，明早同机",
+      li:["武汉 → 北京 约2小时10分；杭州 → 北京 约2小时20分（往返各约 ¥1,400–2,000）。","4 人住首都机场附近，2/11 与北京 3 人同一班进东京。","<b>7 张票开在同一预订号</b>：北京→羽田 / 2·15 羽田→纹别 / 2·21 新千岁→羽田→北京，全程 ANA。","已查到的同类联程实价约 ¥4,856（含 2×23kg 托运），价格量级可参考。"],
+      tip:"这是对 2/15 纹别段保障最强的一版——国际段晚点时，同一预订号里的 羽田→纹别 由 ANA 负责改签；分开买则只能自己认。" },
+    out:{ wh:"<b>2/10 到北京</b>（飞约2h10m）住一晚，2/11 与全团同一班 PEK→HND。",
+          hz:"<b>2/10 到北京</b>（飞约2h20m）住一晚，2/11 与全团同一班 PEK→HND。放弃杭州直飞，换全程一张票。" },
+    back:{ bj:"全团同一张联程：<b>新千岁→羽田→北京</b>（ANA，新千岁⇄羽田每天十几班，衔接不吃紧）。国航 新千岁→首都 直飞更快，但班期不定、又得单独买票，会失去联程保护。",
+           wh:"全团 新千岁→羽田→北京（同一张联程），再北京→武汉 约2h10m；接不上就北京住一晚 2/22 回。",
+           hz:"全团 新千岁→羽田→北京（同一张联程），再北京→杭州 约2h20m；接不上就北京住一晚 2/22 回。" },
+    tip:{ wh:"口径含武汉⇄北京往返约¥1,500 + 2/10 住一晚。",
+          hz:"口径含杭州⇄北京往返约¥1,400 + 2/10 住一晚。多花的钱买的是「全程一张票」：2/15 那段延误由 ANA 负责改签。" } }
+};
+let meet = "a";
+const airOf = (k) => MEET[meet].air[k];
+
 const SHARED = [
-  { d:"2/10", w:"周三", ic:"i-train", all:false, only:"wh", t:"武汉 2 人先到杭州", s:"高铁 4.5h 或 飞 1.5h，住一晚",
-    li:["武汉 → 杭州，高铁约4.5小时（G字车次多）或飞约1小时30分。","住杭州机场周边或市区，次日与杭州组同班。","北京 3 人今天照常上班，行李当晚打包。"],
-    tip:"不想多住一晚也可 2/11 清早武汉飞杭州，但要留足 3 小时中转（冬季华中易起雾）。" },
   { d:"2/11", w:"周四", ic:"i-plane", all:true, t:"东京汇合", s:"两地上午班，傍晚酒店集合",
     li:["北京 3 人：首都/大兴 → 羽田/成田，上午班。","杭州 4 人（含武汉2人）：萧山 → 成田/羽田，上午班。","傍晚酒店集合，晚饭对一遍车票与预约清单。","<b>住宿 4 连泊（2/11–2/14夜）</b>：主推东京站八重洲口～日本桥（JR京叶线直达海滨幕张约33分钟）；省通勤版住海滨幕张站周边。"],
     tip:"2027年春节 2/6，2/11 约在初六初七，高峰刚过票价回落，但当下运力紧张，宁早勿晚。" },
@@ -748,7 +787,9 @@ function dayRow(x, tagText, isAll) {
 }
 function renderDays() {
   $("#days-h").textContent = "7 个人的 11 天 · " + plan + " " + SHORT[plan];
-  const rows = SHARED.map((x) => dayRow(x, x.only ? "武汉 2 人" : x.lock ? "唯一一班机" : "", !!x.only || !!x.lock))
+  const pre = MEET[meet].pre;
+  const rows = [dayRow(pre, meet === "c" ? "武汉·杭州 4 人" : "武汉 2 人", true)]
+    .concat(SHARED.map((x) => dayRow(x, x.lock ? "唯一一班机" : "", !!x.lock)))
     .concat(PLANS[plan].days.map((x) => dayRow(x, "", false)));
   $("#tl").innerHTML = rows.join("");
   document.querySelectorAll(".tl details").forEach((d) => d.addEventListener("toggle", syncMap));
@@ -771,7 +812,7 @@ function lines(planKey, cityKey, occ) {
   j.push(["东京段杂费", COST.tokyoMisc, "WF入场 + 都内交通"]);
   if (yamato) j.push(["宅急便 东京→札幌", COST.yamato, "2/14 晚寄出"]);
   j.push(["餐饮与杂支", COST.food[planKey][tier], "11 天"]);
-  return { jpy: j, air: CITY[cityKey].air, airNote: cityKey === "wh" ? "含武汉⇄杭州接驳约700元" : "往返中值" };
+  return { jpy: j, air: airOf(cityKey), airNote: MEET[meet].n + " · " + (cityKey === "bj" ? "往返中值" : meet === "a" ? (cityKey === "wh" ? "含武汉⇄杭州往返 + 2/10 住一晚" : "杭州直飞") : "含到北京的国内往返 + 2/10 住一晚") };
 }
 function totals(planKey, cityKey, occ) {
   const rate = Math.max(1, parseFloat($("#f-rate").value) || 20);
@@ -807,13 +848,31 @@ function renderMoney() {
 }
 
 /* ══ 怎么飞 ═════════════════════════════════════════ */
+function renderMeet() {
+  $("#meet").innerHTML = Object.keys(MEET).map((k) =>
+    '<button data-m="' + k + '" aria-current="' + (k === meet) + '">' + MEET[k].n +
+    ' <b>' + MEET[k].tagline + '</b></button>').join("");
+  document.querySelectorAll("#meet button").forEach((b) =>
+    b.addEventListener("click", () => { meet = b.dataset.m; renderAll(); }));
+  $("#ticket-hint").innerHTML = meet === "c"
+    ? "出票顺序：<b>先把 7 人的 ANA 联程开成一张</b>（北京→羽田 / 2·15 羽田→纹别 / 2·21 新千岁→羽田→北京），这样 2/15 那段有航司衔接保障；国内到北京的段单独买，务必 2/10 到、别赶当天。"
+    : "出票顺序：先出 <b>2/15 羽田→纹别 ×7</b>（一天一班、唯一无替代，7 张开同一预订号），10 月下旬冬春航季班期出来后再出国际段，回程直飞没确认前别买不可退的接驳段。";
+  $("#meet-sum").innerHTML = MEET[meet].sum + " 三人机票口径：北京 " + fmt(airOf("bj")) +
+    " / 武汉 " + fmt(airOf("wh")) + " / 杭州 " + fmt(airOf("hz")) + " 元。";
+}
+
 function renderFly() {
+  renderMeet();
   $("#fly-cards").innerHTML = Object.keys(CITY).map((k) => {
     const c = CITY[k];
+    const M = MEET[meet];
+    const out = (M.out && M.out[k]) || c.out;
+    const back = (M.back && M.back[k]) || c.back;
+    const tip = (M.tip && M.tip[k]) || c.tip;
     return '<div class="card' + (k === city ? " on" : "") + '"><h3>' + c.name + ' <em>' + c.pax + '人</em></h3>' +
-      '<div class="row"><span class="k">去 2/11</span><span>' + c.out + '</span></div>' +
-      '<div class="row"><span class="k">回 2/21</span><span>' + c.back + '</span></div>' +
-      '<div class="row"><span class="k">要点</span><span>' + c.tip + '</span></div>' +
+      '<div class="row"><span class="k">去 2/11</span><span>' + out + '</span></div>' +
+      '<div class="row"><span class="k">回 2/21</span><span>' + back + '</span></div>' +
+      '<div class="row"><span class="k">要点</span><span>' + tip + '</span></div>' +
       (c.real ? '<div class="row"><span class="k">实价</span><span>' + c.real + '</span></div>' : '') + '</div>';
   }).join("");
 }
